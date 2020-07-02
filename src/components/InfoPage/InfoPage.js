@@ -14,36 +14,38 @@ class InfoPage extends Component {
   };
 
   componentDidMount() {
-    console.log("component did mount, I think.");
+    this.getImages();
+  }
+
+  getImages = () => {
     Axios.get("/api/shelf/")
       .then((result) => {
-        console.log(JSON.stringify(result));
-        console.log(`Component did mount result:(result) ${result}`);
-        console.log(`Component did mount result:(result[0]) ${result[0]}`);
-        console.log(
-          `Component did mount result:(result[0].description) ${result.data.description}`
-        );
-        console.log(result);
         this.setState({
           data: [...result.data],
         });
       })
       .catch((error) => console.log(error));
-  }
+  };
 
-  onSubmit = () => {
+  postImage = () => {
     console.log("in onSubmit");
+    Axios.post("/api/shelf", {
+      image_url: this.state.image_url,
+      description: this.state.description,
+    })
+      .then((result) => {
+        this.setState({ description: "", image_url: "" });
+        this.getImages();
+      })
+      .catch((error) => console.log(error));
   };
 
   render() {
-    console.log(`Data xxxxxxxxxxxxxxxxxxxxxxx is ${this.state.data}`);
-
     return (
       <>
         <p>Shelf Page</p>
-        {/* <p>{JSON.stringify(this.state.data)}</p> */}
 
-        <form onSubmit={() => this.onSubmit()}>
+        <form onSubmit={() => this.postImage()}>
           Image URL:
           <input
             type="text"
@@ -64,7 +66,16 @@ class InfoPage extends Component {
           <>
             {this.state.data.map((item, i) => (
               <li key={i}>
-                <img src={item.image_url} alt={item.description}></img>
+                <img
+                  style={{
+                    border: "1px solid black",
+                    borderRadius: "10px",
+                    boxShadow: "0px 25px 50px -25px rgba(0,0,0,0.75)",
+                  }}
+                  src={item.image_url}
+                  alt={item.description}
+                ></img>
+                <br />
                 {item.description}
               </li>
             ))}

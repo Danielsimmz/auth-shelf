@@ -26,9 +26,12 @@ router.get("/", (req, res) => {
  */
 router.post("/", (req, res) => {
   console.log("Adding item to the stack");
-  const image = req.body.image;
+
+  const image = req.body.image_url;
   const description = req.body.description;
-  const queryText = `INSERT into item (image, description)  VALUES ($1, $2)`;
+  const queryText = `
+    INSERT INTO item (image_url, description)
+    VALUES ($1, $2)`;
   pool
     .query(queryText, [image, description])
     .then(() => res.sendStatus(201))
