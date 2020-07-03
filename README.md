@@ -76,7 +76,7 @@ We recommend working in groups of 4 or 6 and pair programming for this project. 
 
 ### Delete Items from the Shelf
 
-[ ] An authenticated user should be able to delete items from the shelf if they were the one who added the item to the shelf.
+[x] An authenticated user should be able to delete items from the shelf if they were the one who added the item to the shelf.
 
 > NOTE: This should require client and server changes. An unauthenticated attacker from Postman should not be able to delete anything.
 

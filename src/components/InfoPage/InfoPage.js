@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
+// import EditForm from "../EditForm/EditForm";
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -11,6 +12,7 @@ class InfoPage extends Component {
     data: ["fuck", "fuck2"],
     description: "",
     image_url: "",
+    isEditable: false,
   };
 
   componentDidMount() {
@@ -40,6 +42,20 @@ class InfoPage extends Component {
       .catch((error) => console.log(error));
   };
 
+  deleteImage = (event) => {
+    console.log("In delete");
+    Axios.delete(`/api/shelf/${event.target.id}`)
+      .then((result) => this.getImages())
+      .catch((error) => console.log(error));
+  };
+
+  updateImage = (event) => {
+    console.log("In update");
+    Axios.put(`/api/shelf/${event.target.id}`)
+      .then((result) => this.getImages())
+      .catch((error) => console.log(error));
+  };
+
   render() {
     return (
       <>
@@ -63,23 +79,40 @@ class InfoPage extends Component {
         </form>
 
         <ul>
-          <>
-            {this.state.data.map((item, i) => (
-              <li key={i}>
-                <img
-                  style={{
-                    border: "1px solid black",
-                    borderRadius: "10px",
-                    boxShadow: "0px 25px 50px -25px rgba(0,0,0,0.75)",
-                  }}
-                  src={item.image_url}
-                  alt={item.description}
-                ></img>
-                <br />
-                {item.description}
-              </li>
-            ))}
-          </>
+          {this.state.data.map((item, i) => (
+            <li key={i}>
+              <img
+                style={{
+                  border: "1px solid black",
+                  borderRadius: "10px",
+                  boxShadow: "0px 25px 50px -25px rgba(0,0,0,0.75)",
+                }}
+                src={item.image_url}
+                alt={item.description}
+              ></img>
+              <br />
+              {item.description}
+              <button id={item.id} onClick={this.deleteImage}>
+                Delete
+              </button>
+              <br />
+              {/* <button
+                id={item.id}
+                onClick={() => this.setState({ isEditable: true })}
+              >
+                Update
+              </button> */}
+              {/* {this.state.isEditable ? (
+                <EditForm
+                  updateImage={this.updateImage}
+                  notEditable={() => this.setState({ isEditable: false })}
+                  id={item.id}
+                />
+              ) : (
+                <></>
+              )} */}
+            </li>
+          ))}
         </ul>
       </>
     );
