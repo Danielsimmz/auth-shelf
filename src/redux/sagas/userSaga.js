@@ -24,8 +24,22 @@ function* fetchUser() {
   }
 }
 
+function* fetchGiphy() {
+  try {
+    const response = yield axios.get("/api/user/giphy");
+    yield put({
+      type: "SET_GIPHY",
+      payload: response.data.data.images.downsized_large,
+    });
+    console.log("fetchGifs", response.data.data.images.downsized_large);
+  } catch (error) {
+    console.log("error gifs", error);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest("FETCH_GIFS", fetchGiphy);
 }
 
 export default userSaga;

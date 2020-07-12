@@ -3,11 +3,33 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
+const axios = require("axios");
 
 const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
+  // Send back user object from the session (previously queried from the database)
+  res.send(req.user);
+});
+
+//Handles axios request for giphy images from the web using API key provided in .env file.
+router.get("/giphy", (req, res) => {
+  axios
+    .get(
+      `https://api.giphy.com/v1/gifs/random?api_key=${process.env.GIPHY_API_KEY}`
+    )
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+
+      res.sendStatus(500);
+    });
+});
+// Handles Ajax request for user information if user is authenticated
+router.get("/", rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
   res.send(req.user);
 });
