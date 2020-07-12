@@ -4,6 +4,8 @@ import loginMode from './loginModeReducer';
 import user from './userReducer';
 import giphyReducer from "./giphyReducer";
 import categoryReducer from "./categoryReducer";
+import videosReducer from "./videosReducer";
+
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,7 +18,8 @@ const rootReducer = combineReducers({
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user,
   giphyReducer,
-  categoryReducer, // will have an id and username if someone is logged in
+  categoryReducer,
+  videosReducer, // will have an id and username if someone is logged in
 });
 
 export default rootReducer;

@@ -24,6 +24,20 @@ router.get("/", (req, res) => {
     });
 });
 
+router.get("/videos", (req, res) => {
+  console.log("getting videos");
+  const queryText = `SELECT * FROM videos`;
+  pool
+    .query(queryText)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log("Error making SELECT from items", error);
+      res.sendStatus(500);
+    });
+});
+
 /**
  * Add an item for the logged in user to the shelf
  */

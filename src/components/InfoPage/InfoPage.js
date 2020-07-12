@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import ReactPlayer from "react-player";
+import { Button } from "@material-ui/core";
 // import EditForm from "../EditForm/EditForm";
 
 // This is one of our simplest components
@@ -9,18 +11,18 @@ import Axios from "axios";
 
 class InfoPage extends Component {
   state = {
-    data: ["fuck", "fuck2"],
+    data: [""],
     description: "",
-    image_url: "",
+    url: "",
     isEditable: false,
   };
 
   componentDidMount() {
-    this.getImages();
+    this.getVideos();
   }
 
-  getImages = () => {
-    Axios.get("/api/shelf/")
+  getVideos = () => {
+    Axios.get("/api/shelf/videos")
       .then((result) => {
         this.setState({
           data: [...result.data],
@@ -29,23 +31,23 @@ class InfoPage extends Component {
       .catch((error) => console.log(error));
   };
 
-  postImage = () => {
+  postVideos = () => {
     console.log("in onSubmit");
     Axios.post("/api/shelf", {
-      image_url: this.state.image_url,
-      description: this.state.description,
+      url: this.state.url,
+      category_id: this.state.category_id,
     })
       .then((result) => {
-        this.setState({ description: "", image_url: "" });
-        this.getImages();
+        this.setState({ category_id: "", url: "" });
+        this.getVideos();
       })
       .catch((error) => console.log(error));
   };
 
-  deleteImage = (event) => {
+  deleteVideo = (event) => {
     console.log("In delete");
     Axios.delete(`/api/shelf/${event.target.id}`)
-      .then((result) => this.getImages())
+      .then((result) => this.getVideos())
       .catch((error) => console.log(error));
   };
 
@@ -61,18 +63,18 @@ class InfoPage extends Component {
       <>
         <p>Shelf Page</p>
 
-        <form onSubmit={() => this.postImage()}>
-          Image URL:
+        <form onSubmit={() => this.postVideos()}>
+          Video URL:
           <input
             type="text"
-            value={this.state.image_url}
-            onChange={(e) => this.setState({ image_url: e.target.value })}
+            value={this.state.url}
+            onChange={(e) => this.setState({ url: e.target.value })}
           />
           <br />
-          Description:
+          Category ID:
           <textarea
-            value={this.state.description}
-            onChange={(e) => this.setState({ description: e.target.value })}
+            value={this.state.category_id}
+            onChange={(e) => this.setState({ category_id: e.target.value })}
           />
           <br />
           <input type="submit" value="Submit" />
@@ -81,20 +83,34 @@ class InfoPage extends Component {
         <ul>
           {this.state.data.map((item, i) => (
             <li key={i}>
-              <img
-                style={{
-                  border: "1px solid black",
-                  borderRadius: "10px",
-                  boxShadow: "0px 25px 50px -25px rgba(0,0,0,0.75)",
-                }}
-                src={item.image_url}
-                alt={item.description}
-              ></img>
+              <ReactPlayer
+                width="480px"
+                height="360px"
+                controls
+                url={item.url}
+              />
               <br />
-              {item.description}
-              <button id={item.id} onClick={this.deleteImage}>
+              {item.name}
+              <Button
+                id={item.id}
+                className="categoryButton"
+                variant="outlined"
+                color="secondary"
+                type="submit"
+                onClick={this.deleteVideo}
+              >
                 Delete
-              </button>
+              </Button>
+              <Button
+                id={item.id}
+                className="categoryButton"
+                variant="outlined"
+                color="primary"
+                type="submit"
+                onClick={this.deleteVideo}
+              >
+                Edit
+              </Button>
               <br />
               {/* <button
                 id={item.id}
