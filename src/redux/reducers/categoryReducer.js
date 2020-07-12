@@ -1,4 +1,4 @@
-const showcategory = (state = [], action) => {
+const showCategory = (state = [], action) => {
   switch (action.type) {
     case "PUT_CATEGORY":
       return action.payload;
@@ -7,4 +7,4 @@ const showcategory = (state = [], action) => {
   }
 };
 
-export default showcategory;
+export default showCategory;

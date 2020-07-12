@@ -5,6 +5,8 @@ import user from './userReducer';
 import giphyReducer from "./giphyReducer";
 import categoryReducer from "./categoryReducer";
 import videosReducer from "./videosReducer";
+import videoss from "./videossReducer";
+import showCategory from "./categoryReducer";
 
 
 // rootReducer is the primary reducer for our entire project
@@ -16,10 +18,12 @@ import videosReducer from "./videosReducer";
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
-  user,
-  giphyReducer,
-  categoryReducer,
-  videosReducer, // will have an id and username if someone is logged in
+  user, // will have an id and username if someone is logged in
+  giphyReducer, // will have a random giphy
+  categoryReducer, // will have an category and poster info if someone is logged in
+  videosReducer,
+  videoss,
+  showCategory, // will have the videos if someone is logged in
 });
 
 export default rootReducer;

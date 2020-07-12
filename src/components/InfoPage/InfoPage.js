@@ -97,7 +97,7 @@ class InfoPage extends Component {
                 variant="outlined"
                 color="secondary"
                 type="submit"
-                onClick={this.deleteVideo}
+                onClick={() => this.deleteVideo}
               >
                 Delete
               </Button>
@@ -107,12 +107,11 @@ class InfoPage extends Component {
                 variant="outlined"
                 color="primary"
                 type="submit"
-                onClick={this.updateVideo}
+                onClick={() => this.updateVideo}
               >
                 Edit
               </Button>
               <br />
-              
             </li>
           ))}
         </ul>

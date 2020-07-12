@@ -38,6 +38,23 @@ router.get("/videos", (req, res) => {
     });
 });
 
+router.get("/videoss", (req, res) => {
+  // captures all videos associated with the category from database
+  const queryText = `SELECT category.name, array_agg(url) as videos FROM "videos"
+JOIN "category" ON videos.category_id = category.id
+GROUP BY category.name;`;
+  pool
+    .query(queryText)
+    .then((result) => {
+      res.send(result.rows);
+      console.log(result.rows);
+    })
+    .catch((error) => {
+      console.log(`Error on query ${error}`);
+      res.sendStatus(500);
+    });
+});
+
 /**
  * Add an item for the logged in user to the shelf
  */
