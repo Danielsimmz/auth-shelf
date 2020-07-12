@@ -12,7 +12,7 @@ const {
  */
 router.get("/", (req, res) => {
   console.log("getting items");
-  const queryText = `SELECT * FROM item`;
+  const queryText = `SELECT * FROM category`;
   pool
     .query(queryText)
     .then((result) => {
