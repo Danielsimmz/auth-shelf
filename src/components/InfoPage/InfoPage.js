@@ -51,10 +51,10 @@ class InfoPage extends Component {
       .catch((error) => console.log(error));
   };
 
-  updateImage = (event) => {
+  updateVideo = (event) => {
     console.log("In update");
     Axios.put(`/api/shelf/${event.target.id}`)
-      .then((result) => this.getImages())
+      .then((result) => this.getVideos())
       .catch((error) => console.log(error));
   };
 
@@ -63,7 +63,7 @@ class InfoPage extends Component {
       <>
         <p>Shelf Page</p>
 
-        <form onSubmit={() => this.postVideos()}>
+        <form className="text-center" onSubmit={() => this.postVideos()}>
           Video URL:
           <input
             type="text"
@@ -77,7 +77,7 @@ class InfoPage extends Component {
             onChange={(e) => this.setState({ category_id: e.target.value })}
           />
           <br />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Upload Video" />
         </form>
 
         <ul>
@@ -107,26 +107,12 @@ class InfoPage extends Component {
                 variant="outlined"
                 color="primary"
                 type="submit"
-                onClick={this.deleteVideo}
+                onClick={this.updateVideo}
               >
                 Edit
               </Button>
               <br />
-              {/* <button
-                id={item.id}
-                onClick={() => this.setState({ isEditable: true })}
-              >
-                Update
-              </button> */}
-              {/* {this.state.isEditable ? (
-                <EditForm
-                  updateImage={this.updateImage}
-                  notEditable={() => this.setState({ isEditable: false })}
-                  id={item.id}
-                />
-              ) : (
-                <></>
-              )} */}
+              
             </li>
           ))}
         </ul>
