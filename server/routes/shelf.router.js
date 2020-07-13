@@ -92,14 +92,13 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
  * Update an item if it's something the logged in user added
  */
 router.put("/:id", rejectUnauthenticated, (req, res) => {
-  let image_url = req.body.image_url;
-  let description = req.body.description;
+  let url = req.body.url;
+  let category_id = req.body.category_id;
   let id = req.params.id;
-  let user_id = req.user.id;
   const queryText = `
-    UPDATE item SET image_url = $1, description = $2 WHERE id = $3 AND user_id = $4`;
+    UPDATE videos SET url = $1, category_id = $2 WHERE id = $3`;
   pool
-    .query(queryText, [image_url, description, id, user_id])
+    .query(queryText, [url, category_id, id ])
     .then((result) => res.sendStatus(204))
     .catch((error) => console.log(error));
 });
