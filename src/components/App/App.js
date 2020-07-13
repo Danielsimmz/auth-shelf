@@ -12,6 +12,8 @@ import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import AdminRoute from "../AdminRoute/AdminRoute";
+
 
 import AboutPage from "../AboutPage/AboutPage";
 import UserPage from "../UserPage/UserPage";
@@ -46,7 +48,7 @@ class App extends Component {
             <ProtectedRoute exact path="/home" component={UserPage} />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
-            <ProtectedRoute exact path="/info" component={InfoPage} />
+            <AdminRoute exact path="/admin" component={InfoPage} />
             <ProtectedRoute exact path="/details" component={DetailsPage} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
