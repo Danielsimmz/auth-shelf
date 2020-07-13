@@ -78,14 +78,12 @@ router.post("/", rejectUnauthenticated, (req, res) => {
  */
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   let id = req.params.id;
-  let user_id = req.user.id;
   console.log(`ID from params: ${id}`);
-  console.log(`user_id from req.user.id: ${user_id}`);
 
   let queryText = `
-    DELETE FROM item WHERE id = $1 AND user_id = $2`;
+    DELETE FROM videos WHERE id = $1`;
   pool
-    .query(queryText, [id, user_id])
+    .query(queryText, [id])
     .then(() => res.sendStatus(203))
     .catch((error) => res.send(error));
 });
