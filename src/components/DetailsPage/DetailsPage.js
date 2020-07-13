@@ -18,7 +18,7 @@ class DetailsPage extends Component {
   mountVideos = () => {
       console.log(this.props.video);
     for (let object of this.props.video) {
-      if (this.props.category.category === object.name) {
+      if (this.props.category.name === object.name) {
         
         console.log(object);
         
@@ -41,7 +41,8 @@ class DetailsPage extends Component {
         <div className="text-center">
           <h3>
             This is the Videos associated with Category:
-            {this.props.category.category}
+            <br />
+            {this.props.category.name}
           </h3>
           <ul><li>{this.mountVideos()}</li></ul>
         </div>

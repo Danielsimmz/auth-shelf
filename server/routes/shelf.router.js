@@ -61,14 +61,14 @@ GROUP BY category.name;`;
 router.post("/", rejectUnauthenticated, (req, res) => {
   console.log("Adding item to the stack");
 
-  const image = req.body.image_url;
-  const description = req.body.description;
-  const user = req.user.id;
+  const url = req.body.url;
+  const category_id = req.body.category_id;
+  // const user = req.user.id;
   const queryText = `
-    INSERT INTO item (image_url, description, user_id)
-    VALUES ($1, $2, $3)`;
+    INSERT INTO videos (url, category_id)
+    VALUES ($1, $2 )`;
   pool
-    .query(queryText, [image, description, user])
+    .query(queryText, [url, category_id])
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(500));
 });

@@ -8,7 +8,7 @@ class UserPageList extends Component {
     this.props.dispatch({
       type: "PUT_CATEGORY",
       payload: {
-        category: this.props.videoItem.name,
+        name: this.props.videoItem.name,
       },
     });
     this.next();
