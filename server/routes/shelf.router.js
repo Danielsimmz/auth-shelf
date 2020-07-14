@@ -74,7 +74,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * Delete an item if it's something the logged in user added
+ * Delete an item if it's the admin account
  */
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   let id = req.params.id;

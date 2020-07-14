@@ -1,12 +1,14 @@
-import { combineReducers } from 'redux';
-import errors from './errorsReducer';
-import loginMode from './loginModeReducer';
-import user from './userReducer';
+import { combineReducers } from "redux";
+import errors from "./errorsReducer";
+import loginMode from "./loginModeReducer";
+import user from "./userReducer";
 import giphyReducer from "./giphyReducer";
 import categoryReducer from "./categoryReducer";
 import videosReducer from "./videosReducer";
 import videoss from "./videossReducer";
 import showCategory from "./categoryReducer";
+import details from "./editReducer";
+import feedback from "./feedbackReducer";
 
 
 // rootReducer is the primary reducer for our entire project
@@ -23,7 +25,9 @@ const rootReducer = combineReducers({
   categoryReducer, // will have an category and poster info if someone is logged in
   videosReducer,
   videoss,
-  showCategory, // will have the videos if someone is logged in
+  showCategory,
+  details,
+  feedback, // will have the videos if someone is logged in
 });
 
 export default rootReducer;

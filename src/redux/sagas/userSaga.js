@@ -1,11 +1,11 @@
-import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import axios from "axios";
+import { put, takeLatest } from "redux-saga/effects";
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
   try {
     const config = {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
       withCredentials: true,
     };
 
@@ -13,14 +13,14 @@ function* fetchUser() {
     // allow the server session to recognize the user
     // If a user is logged in, this will return their information
     // from the server session (req.user)
-    const response = yield axios.get('/api/user', config);
+    const response = yield axios.get("/api/user", config);
 
     // now that the session has given us a user object
     // with an id and username set the client-side user object to let
     // the client-side code know the user is logged in
-    yield put({ type: 'SET_USER', payload: response.data });
+    yield put({ type: "SET_USER", payload: response.data });
   } catch (error) {
-    console.log('User get request failed', error);
+    console.log("User get request failed", error);
   }
 }
 
@@ -58,27 +58,17 @@ function* fetchVideoss() {
 }
 
 // this is the saga that is used to edit the current data inside the server
-function* editMovies(action) {
-  try{
-    yield axios.put(`/edit`, action.payload)
-    const response = yield axios.get(`/details/${action.payload.id}`);
-    yield put({ type: "SET_DETAILS", payload: response.data});
-  }catch(error){
-    console.log('error editing movie', error)
+function* editVideo(action) {
+  try {
+    yield axios.put(`/api/shelf/${action.payload.id}`, action.payload);
+    const response = yield axios.get(`/api/shelf/${action.payload.id}`);
+    yield put({ type: "SET_DETAILS", payload: response.data });
+  } catch (error) {
+    console.log("error editing movie", error);
   }
 }
 
-// Used to store the details of the movie that is clicked
-const details = (state = [], action) => {
-  switch (action.type) {
-    case "SET_DETAILS":
-      return [...action.payload];
-    default:
-      return state;
-  }
-};
-
-function* deletePlant(action) {
+function* deleteVideo(action) {
   try {
     yield axios.delete(`/api/shelf/${action.payload}`);
 
@@ -89,11 +79,12 @@ function* deletePlant(action) {
 }
 
 function* userSaga() {
-  yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest("FETCH_USER", fetchUser);
   yield takeLatest("FETCH_GIFS", fetchGiphy);
   yield takeLatest("FETCH_VIDEOS", fetchVideos);
   yield takeLatest("FETCH_VIDEOSS", fetchVideoss);
-  yield takeLatest('DELETE_PLANT', deletePlant);
+  yield takeLatest("DELETE_VIDEO", deleteVideo);
+  yield takeLatest("EDIT_VIDEO", editVideo);
 }
 
 export default userSaga;

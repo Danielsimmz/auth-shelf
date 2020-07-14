@@ -55,6 +55,39 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
   res.sendStatus(200);
 });
 
+//Post for new feedback
+router.post("/feedback", rejectUnauthenticated, (req, res) => {
+  //take out the incoming object
+  const obj = req.body;
+
+  //insert into the database
+  const insertData = `INSERT INTO "feedback"
+    ( "understanding", "quality", "interest", "comments", "user_id")
+    VALUES($1, $2, $3, $4, $5);`;
+  const enterFeedback = [
+    obj.quality,
+    obj.understanding,
+    obj.interest,
+    obj.comments,
+    obj.user_id,
+  ];
+  console.log(req.body);
+  
+  //send to database
+  pool
+    .query(insertData, enterFeedback)
+    .then((result) => {
+      console.log(result.rows);
+      //if successful send status message
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(`Error making entry ${insertData}`, error);
+      //if unsuccessful send status message
+      res.sendStatus(500);
+    });
+});
+
 // clear all server session information about this user
 router.post('/logout', (req, res) => {
   // Use passport's built-in method to log out the user

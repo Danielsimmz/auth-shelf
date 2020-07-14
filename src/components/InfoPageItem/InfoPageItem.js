@@ -7,7 +7,7 @@ import { withRouter } from "react-router";
 class InfoPageItem extends Component {
   removeItem = () => {
     this.props.dispatch({
-      type: "DELETE_PLANT",
+      type: "DELETE_VIDEO",
       payload: this.props.item.id,
     });
   };
@@ -18,38 +18,37 @@ class InfoPageItem extends Component {
   render() {
     return (
       <ul className="display">
-        
-          <li>
-            <ReactPlayer
-              width="480px"
-              height="360px"
-              controls
-              url={this.props.item.url}
-            />
-            <br />
-            {console.log("this is the category", this.props.item.name)}
-            <Button
-              id={this.props.item.id}
-              className="categoryButton"
-              variant="outlined"
-              color="secondary"
-              type="submit"
-              onClick={(event) => this.removeItem(event)}
-            >
-              Delete
-            </Button>
-            <Button
-              id={this.props.item.id}
-              className="categoryButton"
-              variant="outlined"
-              color="primary"
-              type="submit"
-              onClick={() => this.edit()}
-            >
-              Edit
-            </Button>
-            <br />
-          </li>
+        <li>
+          <ReactPlayer
+            width="480px"
+            height="360px"
+            controls
+            url={this.props.item.url}
+          />
+          <br />
+          {console.log("this is the category", this.props.item.name)}
+          <Button
+            id={this.props.item.id}
+            className="categoryButton"
+            variant="outlined"
+            color="secondary"
+            type="submit"
+            onClick={(event) => this.removeItem(event)}
+          >
+            Delete
+          </Button>
+          <Button
+            id={this.props.item.id}
+            className="categoryButton"
+            variant="outlined"
+            color="primary"
+            type="submit"
+            onClick={() => this.edit()}
+          >
+            Edit
+          </Button>
+          <br />
+        </li>
       </ul>
     );
   }

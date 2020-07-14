@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class EditForm extends Component {
   // setting local state for the inputs
@@ -18,21 +19,26 @@ class EditForm extends Component {
   }
 
   changeState = () => {
-  //   let value = 0;
-  //   for (let i = 0; i < this.props.details.length; i++) {
-  //     const element = this.props.details[i];
-  //     let value = element.id;
-  //     let title = element.title;
-  //     let description = element.description;
-  //     console.log(value);
-
-  //     return this.setState({
-  //       title: title,
-  //       description: description,
-  //       id: value,
-  //     });
-  //   }
-   };
+    //   let value = 0;
+    //   for (let i = 0; i < this.props.details.length; i++) {
+    //     const element = this.props.details[i];
+    //     let value = element.id;
+    //     let title = element.title;
+    //     let description = element.description;
+    //     console.log(value);
+    //     return this.setState({
+    //       title: title,
+    //       description: description,
+    //       id: value,
+    //     });
+    //   }
+  };
+  handleSubmit = () => {
+    this.props.dispatch({
+      type: "EDIT_VIDEO",
+      payload: { url: this.state.url, category_id: this.state.category_id },
+    });
+  };
 
   // confirmation box before you edit the movie
   submit = () => {
@@ -58,7 +64,7 @@ class EditForm extends Component {
         <form
           id={this.props.id}
           onSubmit={() => {
-            this.props.updateImage();
+            this.submit();
           }}
         >
           Video URL:
@@ -70,7 +76,7 @@ class EditForm extends Component {
           <br />
           category_id:
           <textarea
-          type="number"
+            type="number"
             value={this.state.category_id}
             onChange={(e) => this.setState({ category_id: e.target.value })}
           />
@@ -85,6 +91,4 @@ class EditForm extends Component {
   }
 }
 
-
-
-export default EditForm;
+export default connect()(EditForm);

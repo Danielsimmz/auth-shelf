@@ -23,6 +23,11 @@ import DetailsPage from "../DetailsPage/DetailsPage";
 import EditForm from "../EditForm/EditForm";
 
 import "./App.css";
+import Understanding from "../Feedback/Understanding";
+import Interest from "../Feedback/Interest";
+import Quality from "../Feedback/Quality";
+import Comments from "../Feedback/Comments";
+import ReveiwForm from "../Feedback/ReveiwForm";
 
 
 class App extends Component {
@@ -53,6 +58,11 @@ class App extends Component {
             <AdminRoute exact path="/admin" component={InfoPage} />
             <AdminRoute exact path="/edit" component={EditForm} />
             <ProtectedRoute exact path="/details" component={DetailsPage} />
+            <ProtectedRoute exact path="/feedback" component={Understanding} />
+            <ProtectedRoute exact path="/quality" component={Quality} />
+            <ProtectedRoute exact path="/interest" component={Interest} />
+            <ProtectedRoute exact path="/comments" component={Comments} />
+            <ProtectedRoute exact path="/review" component={ReveiwForm} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

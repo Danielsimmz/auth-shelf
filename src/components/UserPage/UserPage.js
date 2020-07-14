@@ -4,7 +4,7 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 import Axios from "axios";
 import { withRouter } from "react-router";
 import UserPageList from "../UserPageList/UserPageList";
-import './UserPage.css';
+import "./UserPage.css";
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -59,7 +59,7 @@ class UserPage extends Component {
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = (state) => ({
   user: state.user,
-  category: state.categoryReducer
+  category: state.categoryReducer,
 });
 
 // this allows us to use <App /> in index.js
