@@ -19,7 +19,6 @@ class InfoPage extends Component {
   };
 
   componentDidMount() {
-    this.getVideos();
     this.props.dispatch({ type: "FETCH_VIDEOS" });
   }
 
@@ -41,7 +40,7 @@ class InfoPage extends Component {
     })
       .then((result) => {
         this.setState({ category_id: "", url: "" });
-        this.getVideos();
+        this.props.dispatch({ type: "FETCH_VIDEOS" });
       })
       .catch((error) => console.log(error));
   };
@@ -69,7 +68,7 @@ class InfoPage extends Component {
         </form>
 
         <ul className="display">
-          {this.state.data.map((item) => {
+          {this.props.videos.map((item) => {
             console.log("These are the video items", item);
 
             return <InfoPageItem key={item.id} item={item} />;
@@ -82,5 +81,6 @@ class InfoPage extends Component {
 
 const mapStateToProps = (state) => ({
   user: state.user,
+  videos: state.videosReducer,
 });
 export default withRouter(connect(mapStateToProps)(InfoPage));
