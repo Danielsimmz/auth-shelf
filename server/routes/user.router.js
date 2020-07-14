@@ -58,24 +58,21 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
 //Post for new feedback
 router.post("/feedback", rejectUnauthenticated, (req, res) => {
   //take out the incoming object
-  const obj = req.body;
-
+  const understanding = req.body.feedback.understanding;
+  const quality = req.body.feedback.quality;
+  const interest = req.body.feedback.interest;
+  const comments = req.body.feedback.comments;
+const user_id = req.body.user.id;
   //insert into the database
   const insertData = `INSERT INTO "feedback"
     ( "understanding", "quality", "interest", "comments", "user_id")
     VALUES($1, $2, $3, $4, $5);`;
-  const enterFeedback = [
-    obj.quality,
-    obj.understanding,
-    obj.interest,
-    obj.comments,
-    obj.user_id,
-  ];
+  
   console.log(req.body);
   
   //send to database
   pool
-    .query(insertData, enterFeedback)
+    .query(insertData, [understanding, quality, interest, comments, user_id])
     .then((result) => {
       console.log(result.rows);
       //if successful send status message

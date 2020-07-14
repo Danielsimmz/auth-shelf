@@ -2,25 +2,43 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 class ReviewForm extends Component {
   //this is the function for the next button that takes
   //the user to the next page in the process
-  next = (event) => {
-    event.preventDefault();
-    this.props.history.push("/");
+  next = () => {
+    this.props.history.push("/home");
+  };
+  submit = () => {
+    confirmAlert({
+      title: "Confirm to submit",
+      message: "Are you sure you want to submit this review?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => this.postFeedback(),
+        },
+        {
+          label: "No",
+          onClick: () => this.setState({ redirect: true }),
+        },
+      ],
+    });
   };
 
   //this function takes user to previous page
-//   previous = (event) => {
-//     event.preventDefault();
-//     this.props.history.push("/comments");
-//   };
+  //   previous = (event) => {
+  //     event.preventDefault();
+  //     this.props.history.push("/comments");
+  //   };
   //this function loops through the array of feedback and
   postFeedback = () => {
-    console.log(`FEEDBACK POST IS: `, this.props.feedback, this.props.user.id);
+    console.log(`FEEDBACK POST IS: `, this.props.user);
+    const payload = { feedback: this.props.feedback, user: this.props.user };
     axios
-      .post("/api/user/feedback", this.props.feedback, this.props.user.id)
+      .post("/api/user/feedback", payload)
       .then(() => {
         console.log("SENDING:", this.props.feedback);
         //clear global state
@@ -29,6 +47,7 @@ class ReviewForm extends Component {
       .catch((error) => {
         console.log("SORRY, couldnt send post", error);
       });
+    this.next();
   };
 
   render() {
@@ -38,7 +57,7 @@ class ReviewForm extends Component {
     return (
       <div>
         <h2>Review your feedback</h2>
-        <form onSubmit={() => this.next}>
+        <form>
           {/*<button variant="container" color="primary" onClick={this.previous}>
             Previous
     </button>*/}
@@ -61,7 +80,7 @@ class ReviewForm extends Component {
             variant="container"
             color="primary"
             type="submit"
-            onClick={() => this.postFeedback()}
+            onClick={() => this.submit()}
           >
             submit
           </button>
