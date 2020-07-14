@@ -102,7 +102,6 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
     .then((result) => res.sendStatus(204))
     .catch((error) => console.log(error));
 });
-
 /**
  * Return all users along with the total number of items
  * they have added to the shelf

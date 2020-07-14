@@ -57,11 +57,43 @@ function* fetchVideoss() {
   }
 }
 
+// this is the saga that is used to edit the current data inside the server
+function* editMovies(action) {
+  try{
+    yield axios.put(`/edit`, action.payload)
+    const response = yield axios.get(`/details/${action.payload.id}`);
+    yield put({ type: "SET_DETAILS", payload: response.data});
+  }catch(error){
+    console.log('error editing movie', error)
+  }
+}
+
+// Used to store the details of the movie that is clicked
+const details = (state = [], action) => {
+  switch (action.type) {
+    case "SET_DETAILS":
+      return [...action.payload];
+    default:
+      return state;
+  }
+};
+
+function* deletePlant(action) {
+  try {
+    yield axios.delete(`/api/shelf/${action.payload}`);
+
+    yield put({ type: "FETCH_VIDEOS" });
+  } catch (error) {
+    alert(`Unable to delete item: ${action.payload}`);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest("FETCH_GIFS", fetchGiphy);
   yield takeLatest("FETCH_VIDEOS", fetchVideos);
   yield takeLatest("FETCH_VIDEOSS", fetchVideoss);
+  yield takeLatest('DELETE_PLANT', deletePlant);
 }
 
 export default userSaga;

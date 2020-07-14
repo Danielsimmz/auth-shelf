@@ -4,6 +4,7 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 import Axios from "axios";
 import { withRouter } from "react-router";
 import UserPageList from "../UserPageList/UserPageList";
+import './UserPage.css';
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -11,20 +12,20 @@ import UserPageList from "../UserPageList/UserPageList";
 class UserPage extends Component {
   state = {
     data: [""],
-    description: "",
-    image_url: "",
+    category_id: "",
+    url: "",
     isEditable: false,
   };
 
   componentDidMount() {
-    this.getImages();
+    this.getVideos();
   }
 
   // componentWillUnmount() {
   //   this.getImages();
   // }
 
-  getImages = () => {
+  getVideos = () => {
     Axios.get("/api/shelf")
       .then((result) => {
         this.setState({
@@ -37,7 +38,7 @@ class UserPage extends Component {
   render() {
     return (
       <>
-        <div className="text-center">
+        <div className="text-center userPage">
           <h1 id="welcome">Welcome, {this.props.user.username}!</h1>
           <p>Your ID is: {this.props.user.id}</p>
           <LogOutButton className="log-in" />

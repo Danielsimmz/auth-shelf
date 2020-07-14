@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import ReactPlayer from "react-player";
-import { Button } from "@material-ui/core";
+import "./InfoPage.css";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import InfoPageItem from "../InfoPageItem/InfoPageItem";
 // import EditForm from "../EditForm/EditForm";
 
 // This is one of our simplest components
@@ -12,13 +14,13 @@ import { Button } from "@material-ui/core";
 class InfoPage extends Component {
   state = {
     data: [""],
-    description: "",
+    category_id: "",
     url: "",
-    isEditable: false,
   };
 
   componentDidMount() {
     this.getVideos();
+    this.props.dispatch({ type: "FETCH_VIDEOS" });
   }
 
   getVideos = () => {
@@ -44,24 +46,10 @@ class InfoPage extends Component {
       .catch((error) => console.log(error));
   };
 
-  deleteVideo = (event) => {
-    console.log("In delete");
-    Axios.delete(`/api/shelf/${event.target.id}`)
-      .then((result) => this.getVideos())
-      .catch((error) => console.log(error));
-  };
-
-  updateVideo = (event) => {
-    console.log("In update");
-    Axios.put(`/api/shelf/${event.target.id}`)
-      .then((result) => this.getVideos())
-      .catch((error) => console.log(error));
-  };
-
   render() {
     return (
       <>
-        <p>Shelf Page</p>
+        <h2>Administrator:{this.props.user.username}</h2>
 
         <form className="text-center" onSubmit={() => this.postVideos()}>
           Video URL:
@@ -80,44 +68,19 @@ class InfoPage extends Component {
           <input type="submit" value="Upload Video" />
         </form>
 
-        <ul>
-          {this.state.data.map((item, i) => (
-            <li key={i}>
-              <ReactPlayer
-                width="480px"
-                height="360px"
-                controls
-                url={item.url}
-              />
-              <br />
-              {item.name}
-              <Button
-                id={item.id}
-                className="categoryButton"
-                variant="outlined"
-                color="secondary"
-                type="submit"
-                onClick={() => this.deleteVideo()}
-              >
-                Delete
-              </Button>
-              <Button
-                id={item.id}
-                className="categoryButton"
-                variant="outlined"
-                color="primary"
-                type="submit"
-                onClick={() => this.updateVideo}
-              >
-                Edit
-              </Button>
-              <br />
-            </li>
-          ))}
+        <ul className="display">
+          {this.state.data.map((item) => {
+            console.log("These are the video items", item);
+
+            return <InfoPageItem key={item.id} item={item} />;
+          })}
         </ul>
       </>
     );
   }
 }
 
-export default InfoPage;
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+export default withRouter(connect(mapStateToProps)(InfoPage));
