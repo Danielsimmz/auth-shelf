@@ -4,6 +4,7 @@ import "./InfoPage.css";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import InfoPageItem from "../InfoPageItem/InfoPageItem";
+import FeedbackForm from "../FeedbackForm/FeedbackForm";
 // import EditForm from "../EditForm/EditForm";
 
 // This is one of our simplest components
@@ -20,17 +21,8 @@ class InfoPage extends Component {
 
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_VIDEOS" });
+    this.props.dispatch({ type: "FETCH_FEEDBACK" });
   }
-
-  getVideos = () => {
-    Axios.get("/api/shelf/videos")
-      .then((result) => {
-        this.setState({
-          data: [...result.data],
-        });
-      })
-      .catch((error) => console.log(error));
-  };
 
   postVideos = () => {
     console.log("in onSubmit");
@@ -74,6 +66,12 @@ class InfoPage extends Component {
             return <InfoPageItem key={item.id} item={item} />;
           })}
         </ul>
+        <div>
+          {this.props.feedback.map((feedbacks) => {
+            console.log("These are the feedback items", feedbacks);
+          return <FeedbackForm key={feedbacks.id} feedbacks={feedbacks} />;
+          })}
+        </div>
       </>
     );
   }
@@ -82,5 +80,6 @@ class InfoPage extends Component {
 const mapStateToProps = (state) => ({
   user: state.user,
   videos: state.videosReducer,
+  feedback: state.feedbackForm,
 });
 export default withRouter(connect(mapStateToProps)(InfoPage));

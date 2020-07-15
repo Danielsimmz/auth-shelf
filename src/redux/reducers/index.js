@@ -9,6 +9,7 @@ import videoss from "./videossReducer";
 import showCategory from "./categoryReducer";
 import details from "./editReducer";
 import feedback from "./feedbackReducer";
+import feedbackForm from "./feedbackformReducer";
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   showCategory,
   details,
   feedback,
+  feedbackForm
 });
 
 export default rootReducer;

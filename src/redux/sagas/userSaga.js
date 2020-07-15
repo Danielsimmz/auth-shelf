@@ -57,6 +57,16 @@ function* fetchVideoss() {
   }
 }
 
+function* fetchFeedback() {
+  try {
+    const response = yield axios.get("/api/shelf/feedbackform");
+    yield put({ type: "SET_FEEDBACK", payload: response.data });
+    console.log("fetchVideos response.data", response.data);
+  } catch (error) {
+    console.log("error videos", error);
+  }
+}
+
 // this is the saga that is used to edit the current data inside the server
 function* editVideo(action) {
   try {
@@ -99,6 +109,7 @@ function* userSaga() {
   yield takeLatest("DELETE_VIDEO", deleteVideo);
   yield takeLatest("EDIT_VIDEO", editVideo);
   yield takeLatest("EDIT_VIDEOS", fetchDetails);
+  yield takeLatest("FETCH_FEEDBACK", fetchFeedback);
 }
 
 export default userSaga;
