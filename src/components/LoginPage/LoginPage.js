@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 class LoginPage extends Component {
   state = {
@@ -7,6 +8,9 @@ class LoginPage extends Component {
     password: "",
   };
 
+  next = () => {
+    this.props.history.push("/home");
+  };
   login = (event) => {
     event.preventDefault();
 
@@ -21,6 +25,7 @@ class LoginPage extends Component {
     } else {
       this.props.dispatch({ type: "LOGIN_INPUT_ERROR" });
     }
+    this.next();
   }; // end login
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -93,4 +98,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(LoginPage);
+export default withRouter(connect(mapStateToProps)(LoginPage));
