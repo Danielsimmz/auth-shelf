@@ -3,6 +3,7 @@ import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 class EditForm extends Component {
   // setting local state for the inputs
@@ -20,12 +21,12 @@ class EditForm extends Component {
 
   changeState = () => {
     let value = 0;
-    console.log('this is changeState');
-    
+    console.log("this is changeState");
+
     for (let i = 0; i < this.props.video.length; i++) {
       const element = this.props.video[i];
-      console.log("this is the element",element);
-    
+      console.log("this is the element", element);
+
       let id = this.props.video.id;
       let url = element.url;
       let category_id = element.category_id;
@@ -38,15 +39,24 @@ class EditForm extends Component {
     }
   };
   handleSubmit = () => {
-    console.log("this is handlesubmit:",this.state);
-    const payload = {id: this.props.video.id, url: this.state.url, category_id: this.state.category_id};
+    console.log("this is handlesubmit:", this.state);
+    const payload = {
+      id: this.props.video.id,
+      url: this.state.url,
+      category_id: this.state.category_id,
+    };
     if (this.state.url !== "" && this.state.category_id !== 0) {
       this.props.dispatch({ type: "EDIT_VIDEO", payload: payload });
       this.setState({ redirect: true });
     } else {
       alert("please make sure input are not empty");
     }
+    this.doneEdit();
   };
+
+  doneEdit() {
+    this.props.history.push("/admin");
+  }
 
   handleChange = (param, event) => {
     this.setState({
@@ -83,11 +93,7 @@ class EditForm extends Component {
   render() {
     return (
       <>
-        <form
-          onSubmit={
-            this.submit
-          }
-        >
+        <form onSubmit={this.submit}>
           Video URL:
           <input
             type="text"
@@ -120,4 +126,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(EditForm);
+export default withRouter(connect(mapStateToProps)(EditForm));

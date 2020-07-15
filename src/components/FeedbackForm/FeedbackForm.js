@@ -8,10 +8,10 @@ class FeedbackForm extends Component {
   render() {
     return (
       <div>
-        <Table >
+        <Table className="col-12">
           <thead>
             <tr>
-              <th>Username</th>
+              <th>Email</th>
               <th>Understanding</th>
               <th>Quality</th>
               <th>Interest</th>
