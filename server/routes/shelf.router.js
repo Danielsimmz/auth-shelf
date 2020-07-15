@@ -38,6 +38,21 @@ router.get("/videos", (req, res) => {
     });
 });
 
+router.get("/feedback", (req, res) => {
+  
+  const queryText = `SELECT * FROM feedback`;
+  pool
+    .query(queryText)
+    .then((result) => {
+      console.log("getting feedback", result.rows);
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log("Error making SELECT from items", error);
+      res.sendStatus(500);
+    });
+});
+
 router.get("/videoss", (req, res) => {
   // captures all videos associated with the category from database
   const queryText = `SELECT category.name, array_agg(url) as videos FROM "videos"
@@ -91,14 +106,15 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 /**
  * Update an item if it's something the logged in user added
  */
-router.put("/:id", rejectUnauthenticated, (req, res) => {
-  let url = req.body.url;
-  let category_id = req.body.category_id;
-  let id = req.params.id;
+router.put("/", rejectUnauthenticated, (req, res) => {
+  console.log("this is req.body:", req.body);
+  
+  
+  const video = req.body;
   const queryText = `
     UPDATE videos SET url = $1, category_id = $2 WHERE id = $3`;
   pool
-    .query(queryText, [url, category_id, id ])
+    .query(queryText, [video.url, video.category_id, video.id ])
     .then((result) => res.sendStatus(204))
     .catch((error) => console.log(error));
 });
@@ -111,6 +127,21 @@ router.get("/count", (req, res) => {});
 /**
  * Return a specific item by id
  */
-router.get("/:id", (req, res) => {});
+router.get("/:id", (req, res) => {
+  const videoId = req.params.id;
+  // setting query text to select the details only from the movie clicked
+  const queryText = `SELECT videos.id, videos.url, videos.category_id  FROM videos
+WHERE videos.id=$1`;
+  pool
+    .query(queryText, [videoId])
+    .then((result) => {
+      console.log("Success in getting movie details!", result.rows);
+      res.send(result.rows); // send the result --> the movies
+    })
+    .catch((error) => {
+      console.log(`Error on GET details with query ${error}`);
+      res.sendStatus(500); // if there is an error, send server error 500
+    });
+});
 
 module.exports = router;

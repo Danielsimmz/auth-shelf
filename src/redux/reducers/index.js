@@ -10,7 +10,6 @@ import showCategory from "./categoryReducer";
 import details from "./editReducer";
 import feedback from "./feedbackReducer";
 
-
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -23,11 +22,11 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   giphyReducer, // will have a random giphy
   categoryReducer, // will have an category and poster info if someone is logged in
-  videosReducer,
+  videosReducer, // will have the videos if someone is logged in
   videoss,
   showCategory,
   details,
-  feedback, // will have the videos if someone is logged in
+  feedback,
 });
 
 export default rootReducer;

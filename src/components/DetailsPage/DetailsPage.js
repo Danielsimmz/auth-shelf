@@ -26,7 +26,7 @@ class DetailsPage extends Component {
             width="480px"
             height="360px"
             controls
-            url={object.videos}
+            url={video}
           />
         ));
       }

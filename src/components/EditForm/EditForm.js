@@ -1,47 +1,62 @@
 import React, { Component } from "react";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 class EditForm extends Component {
   // setting local state for the inputs
   state = {
     url: "",
-    category_id: "",
+    category_id: 0,
     id: 0,
     redirect: false,
   };
 
   componentDidMount() {
-    console.log(this.state);
+    console.log("this is props video", this.props.video);
     this.changeState();
   }
 
   changeState = () => {
-    //   let value = 0;
-    //   for (let i = 0; i < this.props.details.length; i++) {
-    //     const element = this.props.details[i];
-    //     let value = element.id;
-    //     let title = element.title;
-    //     let description = element.description;
-    //     console.log(value);
-    //     return this.setState({
-    //       title: title,
-    //       description: description,
-    //       id: value,
-    //     });
-    //   }
+    let value = 0;
+    console.log('this is changeState');
+    
+    for (let i = 0; i < this.props.video.length; i++) {
+      const element = this.props.video[i];
+      console.log("this is the element",element);
+    
+      let id = this.props.video.id;
+      let url = element.url;
+      let category_id = element.category_id;
+      console.log(value);
+      return this.setState({
+        url: url,
+        category_id: category_id,
+        id: id,
+      });
+    }
   };
   handleSubmit = () => {
-    this.props.dispatch({
-      type: "EDIT_VIDEO",
-      payload: { url: this.state.url, category_id: this.state.category_id },
+    console.log("this is handlesubmit:",this.state);
+    const payload = {id: this.props.video.id, url: this.state.url, category_id: this.state.category_id};
+    if (this.state.url !== "" && this.state.category_id !== 0) {
+      this.props.dispatch({ type: "EDIT_VIDEO", payload: payload });
+      this.setState({ redirect: true });
+    } else {
+      alert("please make sure input are not empty");
+    }
+  };
+
+  handleChange = (param, event) => {
+    this.setState({
+      [param]: event.target.value,
     });
   };
 
   // confirmation box before you edit the movie
-  submit = () => {
+  submit = (event) => {
+    event.preventDefault();
     confirmAlert({
       title: "Confirm to submit",
       message: "Are you sure you want to edit this?.",
@@ -58,27 +73,33 @@ class EditForm extends Component {
     });
   };
 
+  //uses the Redirect to back to details page with the confirmation box
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/edit" />;
+    }
+  };
+
   render() {
     return (
       <>
         <form
-          id={this.props.id}
-          onSubmit={() => {
-            this.submit();
-          }}
+          onSubmit={
+            this.submit
+          }
         >
           Video URL:
           <input
             type="text"
             value={this.state.url}
-            onChange={(e) => this.setState({ url: e.target.value })}
+            onChange={(event) => this.handleChange("url", event)}
           />
           <br />
           category_id:
           <textarea
             type="number"
             value={this.state.category_id}
-            onChange={(e) => this.setState({ category_id: e.target.value })}
+            onChange={(event) => this.handleChange("category_id", event)}
           />
           <br />
           <Link to="/admin">
@@ -91,4 +112,12 @@ class EditForm extends Component {
   }
 }
 
-export default connect()(EditForm);
+// bringing in the video details to use as props
+const mapStateToProps = (state) => {
+
+  return {
+    video: state.details,
+  };
+};
+
+export default connect(mapStateToProps)(EditForm);

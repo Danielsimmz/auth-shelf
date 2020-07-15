@@ -11,6 +11,15 @@ class InfoPageItem extends Component {
       payload: this.props.item.id,
     });
   };
+  editItem = (e) => {
+      this.props.dispatch({
+          type: "EDIT_VIDEOS",
+          payload: e,
+      });
+      console.log(this.props.item);
+      
+      this.edit();
+  }
   edit() {
     this.props.history.push("/edit");
   }
@@ -43,7 +52,7 @@ class InfoPageItem extends Component {
             variant="outlined"
             color="primary"
             type="submit"
-            onClick={() => this.edit()}
+            onClick={() => this.editItem(this.props.item.id)}
           >
             Edit
           </Button>

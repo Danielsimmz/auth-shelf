@@ -60,8 +60,11 @@ function* fetchVideoss() {
 // this is the saga that is used to edit the current data inside the server
 function* editVideo(action) {
   try {
-    yield axios.put(`/api/shelf/${action.payload.id}`, action.payload);
+    console.log("this is the action payload",action.payload);
+    console.log("this is the action payload ID", action.payload.id);
+    yield axios.put(`/api/shelf/`, action.payload);
     const response = yield axios.get(`/api/shelf/${action.payload.id}`);
+    console.log("this is the response.data", response.data);
     yield put({ type: "SET_DETAILS", payload: response.data });
   } catch (error) {
     console.log("error editing movie", error);
@@ -78,6 +81,16 @@ function* deleteVideo(action) {
   }
 }
 
+function* fetchDetails(action) {
+  try {
+    const response = yield axios.get(`/api/shelf/${action.payload}`);
+    console.log("this is fetchDetails:", response.data);
+    yield put({ type: "SET_DETAILSS", payload: response.data[0]});
+  } catch (error) {
+    console.log("Error getting movies ", error);
+  }
+} // end GET /details
+
 function* userSaga() {
   yield takeLatest("FETCH_USER", fetchUser);
   yield takeLatest("FETCH_GIFS", fetchGiphy);
@@ -85,6 +98,7 @@ function* userSaga() {
   yield takeLatest("FETCH_VIDEOSS", fetchVideoss);
   yield takeLatest("DELETE_VIDEO", deleteVideo);
   yield takeLatest("EDIT_VIDEO", editVideo);
+  yield takeLatest("EDIT_VIDEOS", fetchDetails);
 }
 
 export default userSaga;
