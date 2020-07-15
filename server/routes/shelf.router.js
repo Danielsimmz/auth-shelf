@@ -39,7 +39,6 @@ router.get("/videos", (req, res) => {
 });
 
 router.get("/feedback", (req, res) => {
-  
   const queryText = `SELECT * FROM feedback`;
   pool
     .query(queryText)
@@ -49,6 +48,21 @@ router.get("/feedback", (req, res) => {
     })
     .catch((error) => {
       console.log("Error making SELECT from items", error);
+      res.sendStatus(500);
+    });
+});
+
+router.get("/feedbackform", (req, res) => {
+  // captures all videos associated with the category from database
+  const queryText = `SELECT username, understanding, quality, interest, comments FROM "user" JOIN feedback ON "user".id = feedback.user_id;`;
+  pool
+    .query(queryText)
+    .then((result) => {
+      res.send(result.rows);
+      console.log(result.rows);
+    })
+    .catch((error) => {
+      console.log(`Error on query ${error}`);
       res.sendStatus(500);
     });
 });
@@ -108,13 +122,12 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
  */
 router.put("/", rejectUnauthenticated, (req, res) => {
   console.log("this is req.body:", req.body);
-  
-  
+
   const video = req.body;
   const queryText = `
     UPDATE videos SET url = $1, category_id = $2 WHERE id = $3`;
   pool
-    .query(queryText, [video.url, video.category_id, video.id ])
+    .query(queryText, [video.url, video.category_id, video.id])
     .then((result) => res.sendStatus(204))
     .catch((error) => console.log(error));
 });
