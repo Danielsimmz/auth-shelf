@@ -25,7 +25,7 @@ class WelcomePage extends Component {
     return (
       <div className="text-center display">
         {console.log(this.props.gif)}
-        <Card style={{ height: "600px", width: "450px" }}>
+        <Card style={{ height: "550px", width: "450px" }}>
           <CardActionArea>
             <Typography gutterBottom variant="h5" component="h2">
               <h2>Welcome to the Tennis Gurus site</h2>
@@ -38,18 +38,17 @@ class WelcomePage extends Component {
             />
             <CardContent></CardContent>
           </CardActionArea>
-          <CardActions>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              id={this.props.gif.id}
-              onClick={() => this.next()}
-            >
-              Enter the site
-            </Button>
-          </CardActions>
+          <CardActions></CardActions>
         </Card>
+        <Button
+          size="small"
+          variant="contained"
+          color="primary"
+          id={this.props.gif.id}
+          onClick={() => this.next()}
+        >
+          Enter the site
+        </Button>
       </div>
     );
   }

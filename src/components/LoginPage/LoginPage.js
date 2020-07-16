@@ -6,6 +6,11 @@ import {
   Input,
   InputLabel,
   InputAdornment,
+  Button,
+  Typography,
+  Link,
+  Grid,
+
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
@@ -40,10 +45,22 @@ class LoginPage extends Component {
       [propertyName]: event.target.value,
     });
   };
+ copyright=() => {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
   render() {
     return (
-      <div>
+      <div className="home">
         {this.props.errors.loginMessage && (
           <h2 className="alert" role="alert">
             {this.props.errors.loginMessage}
@@ -84,7 +101,7 @@ class LoginPage extends Component {
             </FormControl>
           </div>
           <div>
-            <input
+            <Input
               className="log-in"
               type="submit"
               name="submit"
@@ -93,16 +110,19 @@ class LoginPage extends Component {
           </div>
         </form>
         <center>
-          <button
+          <Button
             type="button"
+            color="secondary"
+            variant="contained"
             className="link-button"
             onClick={() => {
               this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
             }}
           >
             Register
-          </button>
+          </Button>
         </center>
+        {this.copyright}
       </div>
     );
   }

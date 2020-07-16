@@ -4,6 +4,7 @@ import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { TextField, Input } from "@material-ui/core";
 
 class EditForm extends Component {
   // setting local state for the inputs
@@ -95,14 +96,14 @@ class EditForm extends Component {
       <>
         <form onSubmit={this.submit}>
           Video URL:
-          <input
+          <Input
             type="text"
             value={this.state.url}
             onChange={(event) => this.handleChange("url", event)}
           />
           <br />
           category_id:
-          <textarea
+          <TextField
             type="number"
             value={this.state.category_id}
             onChange={(event) => this.handleChange("category_id", event)}

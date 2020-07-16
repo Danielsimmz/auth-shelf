@@ -1,4 +1,5 @@
 import React from 'react';
+import './AboutPage.css';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -6,7 +7,7 @@ import React from 'react';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 const AboutPage = () => (
-  <div>
+  <div className="home">
     <div>
       <p>
         Hi. Ever wondered what it would be like to be a tennis guru. I'm not

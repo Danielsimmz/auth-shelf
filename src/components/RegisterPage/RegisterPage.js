@@ -5,6 +5,7 @@ import {
   Input,
   InputLabel,
   InputAdornment,
+  Button,
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
@@ -81,7 +82,7 @@ class RegisterPage extends Component {
             </FormControl>
           </div>
           <div>
-            <input
+            <Input
               className="register"
               type="submit"
               name="submit"
@@ -90,15 +91,18 @@ class RegisterPage extends Component {
           </div>
         </form>
         <center>
-          <button
+          <Button
             type="button"
+            color="secondary"
+            variant="contained"
+            className="link-button"
             className="link-button"
             onClick={() => {
               this.props.dispatch({ type: "SET_TO_LOGIN_MODE" });
             }}
           >
             Login
-          </button>
+          </Button>
         </center>
       </div>
     );
