@@ -111,8 +111,3 @@ INSERT INTO "videos"
     (category_id, url)
 VALUES
     (5, 'https://www.youtube.com/watch?v=_1Z9GfHCwmM');
-
-SELECT category.name, array_agg(url) as videos
-FROM "videos"
-    JOIN "category" ON videos.category_id = category.id
-GROUP BY category.name;

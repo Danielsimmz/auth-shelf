@@ -73,6 +73,7 @@ class RegisterPage extends Component {
               <Input
                 id="input-with-icon-adornment"
                 value={this.state.password}
+                placeholder="xxxxxx"
                 onChange={this.handleInputChangeFor("password")}
                 startAdornment={
                   <InputAdornment position="start">
