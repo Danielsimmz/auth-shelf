@@ -23,12 +23,7 @@ class DetailsPage extends Component {
         console.log(object);
 
         return object.videos.map((video) => (
-          <ReactPlayer
-            width="480px"
-            height="360px"
-            controls
-            url={video}
-          />
+          <ReactPlayer width="480px" height="360px" controls url={video} />
         ));
       }
     }
@@ -36,17 +31,21 @@ class DetailsPage extends Component {
   render() {
     return (
       <>
-        <div className="text-center">
-          <h3>
-            This is the Videos associated with Category:
-            <br />
-            {this.props.category.name}
-          </h3>
-          <ul className="display">
-            <li>
-              <Paper>{this.mountVideos()}</Paper>
-            </li>
-          </ul>
+        <div className="container justify-content-center">
+          <div className="row justify-content-around">
+            <h3>
+              This is the Videos associated with Category:
+              <br />
+              {this.props.category.name}
+            </h3>
+            <ul className="display">
+              <li>
+                <Paper elevation={3} variant="contained" square>
+                  {this.mountVideos()}
+                </Paper>
+              </li>
+            </ul>
+          </div>
         </div>
       </>
     );

@@ -38,15 +38,18 @@ class UserPage extends Component {
   render() {
     return (
       <>
-        <div className="text-center userPage">
-          <h1 id="welcome">Welcome, {this.props.user.username}!</h1>
-          <h2>Categories</h2>
-
-          <br />
-          {this.state.data.map((videoItem, i) => {
-            console.log("VideoItem is", videoItem);
-            return <UserPageList key={i} videoItem={videoItem} />;
-          })}
+        <h1 id="welcome">Welcome, {this.props.user.username}!</h1>
+        <h2>Categories</h2>
+        <div className="container justify-content-center ">
+          <div className="row justify-content-around">
+            <br />
+            <ul className="userPage">
+              {this.state.data.map((videoItem, i) => {
+                console.log("VideoItem is", videoItem);
+                return <UserPageList key={i} videoItem={videoItem} />;
+              })}
+            </ul>
+          </div>
         </div>
       </>
     );

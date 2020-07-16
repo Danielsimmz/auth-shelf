@@ -55,6 +55,7 @@ class RegisterPage extends Component {
               <Input
                 id="input-with-icon-adornment"
                 value={this.state.username}
+                placeholder="name@example.com"
                 onChange={this.handleInputChangeFor("username")}
                 startAdornment={
                   <InputAdornment position="start">

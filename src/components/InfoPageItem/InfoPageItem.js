@@ -28,7 +28,7 @@ class InfoPageItem extends Component {
     return (
       <ul className="display">
         <li>
-          <Paper>
+          <Paper elevation={3} variant="outlined">
             <ReactPlayer
               width="480px"
               height="360px"

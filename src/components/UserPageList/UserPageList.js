@@ -32,40 +32,41 @@ class UserPageList extends Component {
 
   render() {
     return (
-      <div className="display">
-        <span id="userPage">
-          <Card
-            style={{ height: "400px", width: "450px" }}
-          >
-            <CardActionArea>
-              <CardMedia
-                className="media"
-                component="img"
-                image={this.props.videoItem.poster}
-                title={this.props.videoItem.name}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {this.props.videoItem.name}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button
-                size="small"
-                variant="contained"
-                color="primary"
-                
-                id={this.props.videoItem.id}
-                onClick={() => this.showCategory()}
-              >
-                View Videos
-              </Button>
-            </CardActions>
-          </Card>
-          <br />
-        </span>
-      </div>
+      <>
+        <div>
+          <ul>
+            <li className="userPage">
+              <Card style={{ height: "400px", width: "450px" }}>
+                <CardActionArea>
+                  <CardMedia
+                    className="media"
+                    component="img"
+                    image={this.props.videoItem.poster}
+                    title={this.props.videoItem.name}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {this.props.videoItem.name}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    color="primary"
+                    id={this.props.videoItem.id}
+                    onClick={() => this.showCategory()}
+                  >
+                    View Videos
+                  </Button>
+                </CardActions>
+              </Card>
+              <br />
+            </li>
+          </ul>
+        </div>
+      </>
     );
   }
 }

@@ -76,6 +76,8 @@ class LoginPage extends Component {
               <Input
                 id="input-with-icon-adornment"
                 value={this.state.username}
+                placeholder="name@example.com"
+                variant="contained"
                 onChange={this.handleInputChangeFor("username")}
                 startAdornment={
                   <InputAdornment position="start">
@@ -91,6 +93,7 @@ class LoginPage extends Component {
               <Input
                 id="input-with-icon-adornment"
                 value={this.state.password}
+                placeholder="xxxxxx"
                 onChange={this.handleInputChangeFor("password")}
                 startAdornment={
                   <InputAdornment position="start">
@@ -114,7 +117,7 @@ class LoginPage extends Component {
             type="button"
             color="secondary"
             variant="contained"
-            className="link-button"
+            className="link-button text-center"
             onClick={() => {
               this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
             }}

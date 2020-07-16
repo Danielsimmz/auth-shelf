@@ -1,6 +1,8 @@
 .display {
   text-align: center;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
+  padding-bottom: 3em;
+  padding-top: 3em;
 }

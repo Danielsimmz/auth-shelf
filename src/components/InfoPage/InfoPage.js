@@ -5,6 +5,14 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import InfoPageItem from "../InfoPageItem/InfoPageItem";
 import FeedbackForm from "../FeedbackForm/FeedbackForm";
+import {
+  FormControl,
+  InputLabel,
+  TextField,
+  Input,
+  Button,
+  Paper,
+} from "@material-ui/core";
 // import EditForm from "../EditForm/EditForm";
 
 // This is one of our simplest components
@@ -45,20 +53,41 @@ class InfoPage extends Component {
             <h2>Administrator:{this.props.user.username}</h2>
 
             <form className="text-center" onSubmit={() => this.postVideos()}>
-              Video URL:
-              <input
-                type="text"
-                value={this.state.url}
-                onChange={(e) => this.setState({ url: e.target.value })}
-              />
+              <FormControl>
+                <InputLabel htmlFor="videoUrl" name="videoUrl">
+                  Video URL:
+                </InputLabel>
+                {/* <Input
+                id="input-with-icon-adornment"
+                value={this.state.username}
+                placeholder="name@example.com"
+                variant="contained"
+                onChange={this.handleInputChangeFor("username")} */}
+                <Input
+                  type="text"
+                  value={this.state.url}
+                  placeholder="http//:www.example.com"
+                  onChange={(e) => this.setState({ url: e.target.value })}
+                />
+              </FormControl>
               <br />
-              Category ID:
-              <textarea
-                value={this.state.category_id}
-                onChange={(e) => this.setState({ category_id: e.target.value })}
-              />
-              <br />
-              <input type="submit" value="Upload Video" />
+              <FormControl>
+                <InputLabel htmlFor="category_id" name="category">
+                  CATEGORY:
+                </InputLabel>
+                <Input
+                  type="number"
+                  value={this.state.category_id}
+                  placeholder="1-5"
+                  onChange={(e) =>
+                    this.setState({ category_id: e.target.value })
+                  }
+                />
+                <br />
+                <Button variant="contained" color="primary" type="submit" value="Upload Video">
+                  Upload
+                </Button>
+              </FormControl>
             </form>
 
             <ul className="display">
@@ -68,7 +97,7 @@ class InfoPage extends Component {
                 return <InfoPageItem key={item.id} item={item} />;
               })}
             </ul>
-            
+
             {this.props.feedback.map((feedbacks) => {
               console.log("These are the feedback items", feedbacks);
               return <FeedbackForm key={feedbacks.id} feedbacks={feedbacks} />;
