@@ -13,28 +13,131 @@ Our client, Prime Digital Academy: Room 2, has asked for an app to simulate the 
 
 ## CREATE DATABASE AND TABLE
 
-Create a new database called `auth_shelf` and create a `user` table:
+Create a new database called `the_tennis_guru` and create a `user` table:
 user-update
 
 ```SQL
-CREATE TABLE "user" (
+CREATE TABLE "user"
+(
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
+    "is_admin" BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE "item" (
+CREATE TABLE "category"
+(
     "id" SERIAL PRIMARY KEY,
-    "description" VARCHAR (80) NOT NULL,
-    "image_url" VARCHAR (2083),
-    "user_id" INT REFERENCES "user"
+    "name" VARCHAR (120) NOT NULL,
+    "poster" VARCHAR(120) NOT NULL
 );
+DROP TABLE "category";
+
+
+CREATE TABLE "videos"
+(
+    "id" SERIAL PRIMARY KEY,
+    "url" VARCHAR (200) NOT NULL,
+    "category_id" INT NOT NULL REFERENCES "category"
+);
+DROP TABLE "videos";
+
+CREATE TABLE "articles"
+(
+    "id" SERIAL PRIMARY KEY,
+    "url" VARCHAR (200) NOT NULL,
+    "category_id" INT NOT NULL REFERENCES "category"
+);
+DROP TABLE "articles";
+
+CREATE TABLE "feedback"
+(
+    "id" serial PRIMARY KEY,
+    "understanding" INT NOT NULL,
+    "quality" INT NOT NULL,
+    "interest" INT NOT NULL,
+    "comments" text,
+    "user_id" INT NOT NULL REFERENCES "user",
+    "date" date NOT NULL DEFAULT CURRENT_DATE
+);
+DROP TABLE "feedback";
+
+INSERT INTO "category"
+    ("name","poster")
+VALUES
+    ('Forehand', 'https://media0.giphy.com/media/d91znKMfav9mre2TlC/200.gif'),
+    ('Backhand', 'https://thumbs.gfycat.com/WillingDirtyDouglasfirbarkbeetle-size_restricted.gif'),
+    ('Serve', 'https://thumbs.gfycat.com/EqualMintyKitfox-max-1mb.gif'),
+    ('Topspin', 'https://i.makeagif.com/media/5-19-2015/G5k_Qd.gif'),
+    ('Slice', 'https://i.makeagif.com/media/5-26-2014/HEXTv4.gif');
+
+INSERT INTO "videos"
+    (category_id, url)
+VALUES
+    (1, 'https://www.youtube.com/watch?v=aZj7DIEftPg');
+INSERT INTO "videos"
+    (category_id, url)
+VALUES
+    (1, 'https://www.youtube.com/watch?v=-sZ3madzfoA');
+
+INSERT INTO "videos"
+    (category_id, url)
+VALUES
+    (2, 'https://www.youtube.com/watch?v=hKSr14cUn9Q');
+INSERT INTO "videos"
+    (category_id, url)
+VALUES
+    (2, 'https://www.youtube.com/watch?v=PBguk3yRPgI');
+
+INSERT INTO "videos"
+    (category_id, url)
+VALUES
+    (3, 'https://www.youtube.com/watch?v=w03NVg7YtNo');
+INSERT INTO "videos"
+    (category_id, url)
+VALUES
+    (3, 'https://www.youtube.com/watch?v=ue0M7ki9G1w');
+
+INSERT INTO "videos"
+    (category_id, url)
+VALUES
+    (4, 'https://www.youtube.com/watch?v=Rm08-qbXeW8');
+INSERT INTO "videos"
+    (category_id, url)
+VALUES
+    (4, 'https://www.youtube.com/watch?v=AQvD_pMVL8E');
+
+
+INSERT INTO "videos"
+    (category_id, url)
+VALUES
+    (5, 'https://www.youtube.com/watch?v=t0s8V1G9dKs');
+INSERT INTO "videos"
+    (category_id, url)
+VALUES
+    (5, 'https://www.youtube.com/watch?v=_1Z9GfHCwmM');
+
+INSERT INTO "videos"
+    (category_id, url)
+VALUES
+    (5, 'https://www.youtube.com/watch?v=t0s8V1G9dKs');
+INSERT INTO "videos"
+    (category_id, url)
+VALUES
+    (5, 'https://www.youtube.com/watch?v=_1Z9GfHCwmM');
+
 ```
 
 ## DEVELOPMENT SETUP
 
 - Clone the repository for your group
 - Run `npm install`
+`npm install react-player`
+`npm install react-confirm-alert --save`
+`npm install @material-ui/core`
+`npm install react-bootstrap bootstrap`
+`npm i react-bootstrap-sweetalert`
+`npm install @material-ui/icons`
 - Create a `.env` file at the root of the project and paste this line into the file:
   ```
   SERVER_SESSION_SECRET=superDuperSecret

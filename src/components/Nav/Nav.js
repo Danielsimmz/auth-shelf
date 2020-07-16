@@ -7,7 +7,7 @@ import "./Nav.css";
 const Nav = (props) => (
   <div className="nav">
     <Link to="/welcome">
-      <h2 className="nav-title">Auth Shelf</h2>
+      <h2 className="nav-title">Tennis Gurus</h2>
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
@@ -32,7 +32,7 @@ const Nav = (props) => (
             {/* Show this link if they are logged in or not,
         but call this link 'admin' if they are and admin,
         and call this link '' if they are not */}
-            {props.user.id && props.user.is_admin === true ? "Edit Page" : ""}
+            {props.user.id && props.user.is_admin === true && "Edit Page"}
           </Link>
           <Link className="nav-link" to="/feedback">
             Feedback Form

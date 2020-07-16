@@ -38,8 +38,10 @@ class UserPage extends Component {
   render() {
     return (
       <>
-        <h1 id="welcome">Welcome, {this.props.user.username}!</h1>
-        <h2>Categories</h2>
+        <h1 className="userPage" id="welcome">
+          Welcome, {this.props.user.username}!
+        </h1>
+        <h2 className="userPage">Categories</h2>
         <div className="container justify-content-center ">
           <div className="row justify-content-around">
             <br />
