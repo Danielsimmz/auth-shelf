@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { Button } from "@material-ui/core";
 import "./WelcomePage.css";
-//import axios from "axios";
 import { connect } from "react-redux";
 
 //this component is for taking input on how the user feels supported
@@ -16,7 +15,7 @@ class WelcomePage extends Component {
 
   render() {
     return (
-      <div className="text-center">
+      <div className="text-center display">
         {console.log(this.props.gif)}
         <h2>Welcome to the Tennis Gurus site</h2>
         <p>

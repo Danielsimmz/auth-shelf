@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import ReactPlayer from "react-player";
+import { Paper } from "@material-ui/core";
 
 class DetailsPage extends Component {
   componentDidMount() {
@@ -41,8 +42,10 @@ class DetailsPage extends Component {
             <br />
             {this.props.category.name}
           </h3>
-          <ul>
-            <li>{this.mountVideos()}</li>
+          <ul className="display">
+            <li>
+              <Paper>{this.mountVideos()}</Paper>
+            </li>
           </ul>
         </div>
       </>

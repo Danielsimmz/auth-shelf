@@ -2,6 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import "./UserPageList.css";
+import {
+  Button,
+  CardMedia,
+  CardContent,
+  CardActionArea,
+  CardActions,
+  Typography,
+  Card,
+} from "@material-ui/core";
+
+
+
 
 class UserPageList extends Component {
   showCategory = () => {
@@ -20,25 +32,37 @@ class UserPageList extends Component {
 
   render() {
     return (
-      <div className="">
+      <div className="display">
         <span id="userPage">
-          <img
-            style={{
-              border: "1px solid black",
-              borderRadius: "10px",
-              boxShadow: "0px 25px 50px -25px rgba(0,0,0,0.75)",
-            }}
-            src={this.props.videoItem.poster}
-            alt={this.props.videoItem.name}
-          ></img>
-          <br />
-          {this.props.videoItem.name}
-          <button
-            id={this.props.videoItem.id}
-            onClick={() => this.showCategory()}
+          <Card
+            style={{ height: "400px", width: "450px" }}
           >
-            View
-          </button>
+            <CardActionArea>
+              <CardMedia
+                className="media"
+                component="img"
+                image={this.props.videoItem.poster}
+                title={this.props.videoItem.name}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {this.props.videoItem.name}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Button
+                size="small"
+                variant="contained"
+                color="primary"
+                
+                id={this.props.videoItem.id}
+                onClick={() => this.showCategory()}
+              >
+                View Videos
+              </Button>
+            </CardActions>
+          </Card>
           <br />
         </span>
       </div>
@@ -47,3 +71,4 @@ class UserPageList extends Component {
 }
 
 export default withRouter(connect()(UserPageList));
+
