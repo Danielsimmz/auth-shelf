@@ -40,34 +40,35 @@ class InfoPage extends Component {
   render() {
     return (
       <>
-        <div>
-          <h2>Administrator:{this.props.user.username}</h2>
+        <div className="container justify-content-center">
+          <div className="row justify-content-around">
+            <h2>Administrator:{this.props.user.username}</h2>
 
-          <form className="text-center" onSubmit={() => this.postVideos()}>
-            Video URL:
-            <input
-              type="text"
-              value={this.state.url}
-              onChange={(e) => this.setState({ url: e.target.value })}
-            />
-            <br />
-            Category ID:
-            <textarea
-              value={this.state.category_id}
-              onChange={(e) => this.setState({ category_id: e.target.value })}
-            />
-            <br />
-            <input type="submit" value="Upload Video" />
-          </form>
+            <form className="text-center" onSubmit={() => this.postVideos()}>
+              Video URL:
+              <input
+                type="text"
+                value={this.state.url}
+                onChange={(e) => this.setState({ url: e.target.value })}
+              />
+              <br />
+              Category ID:
+              <textarea
+                value={this.state.category_id}
+                onChange={(e) => this.setState({ category_id: e.target.value })}
+              />
+              <br />
+              <input type="submit" value="Upload Video" />
+            </form>
 
-          <ul className="display">
-            {this.props.videos.map((item) => {
-              console.log("These are the video items", item);
+            <ul className="display">
+              {this.props.videos.map((item) => {
+                console.log("These are the video items", item);
 
-              return <InfoPageItem key={item.id} item={item} />;
-            })}
-          </ul>
-          <div>
+                return <InfoPageItem key={item.id} item={item} />;
+              })}
+            </ul>
+            
             {this.props.feedback.map((feedbacks) => {
               console.log("These are the feedback items", feedbacks);
               return <FeedbackForm key={feedbacks.id} feedbacks={feedbacks} />;

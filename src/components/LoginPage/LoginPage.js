@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import {
+  FormControl,
+  Input,
+  InputLabel,
+  InputAdornment,
+} from "@material-ui/core";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 
 class LoginPage extends Component {
   state = {
@@ -45,26 +52,36 @@ class LoginPage extends Component {
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
-            <label htmlFor="username">
-              Email:
-              <input
-                type="text"
-                name="username"
+            <FormControl className="margin">
+              <InputLabel htmlFor="username" name="username">
+                Email
+              </InputLabel>
+              <Input
+                id="input-with-icon-adornment"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor("username")}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                }
               />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
+            </FormControl>
+            <FormControl>
+              <InputLabel htmlFor="password" name="password">
+                Password
+              </InputLabel>
+              <Input
+                id="input-with-icon-adornment"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor("password")}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                }
               />
-            </label>
+            </FormControl>
           </div>
           <div>
             <input

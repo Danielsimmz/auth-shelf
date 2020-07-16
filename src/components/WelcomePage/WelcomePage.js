@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
-import { Button } from "@material-ui/core";
+import {
+  Button,
+  CardMedia,
+  CardContent,
+  CardActionArea,
+  CardActions,
+  Typography,
+  Card,
+} from "@material-ui/core";
 import "./WelcomePage.css";
 import { connect } from "react-redux";
 
@@ -17,28 +25,31 @@ class WelcomePage extends Component {
     return (
       <div className="text-center display">
         {console.log(this.props.gif)}
-        <h2>Welcome to the Tennis Gurus site</h2>
-        <p>
-          <b>
-            <i>
-              Hi. Ever wondered what it would be like to be a tennis guru. I'm
-              not talking about playing in the Roland Garros necessarily, but
-              being able to participate in friendly tournaments with friends and
-              crushing it.
-              <br />
-              Well, you are in the right place. This site is dedicated to teach
-              you in all things tennis related and in no time you should be well
-              on your way to becoming the player of your dreams.
-            </i>
-          </b>
-        </p>
-        <span>
-          <img src={this.props.gif.url} alt={"giphy"}></img>
-        </span>
-        <br />
-        <Button variant="contained" color="primary" onClick={this.next}>
-          Enter the site
-        </Button>
+        <Card style={{ height: "600px", width: "450px" }}>
+          <CardActionArea>
+            <Typography gutterBottom variant="h5" component="h2">
+              <h2>Welcome to the Tennis Gurus site</h2>
+            </Typography>
+            <CardMedia
+              className="media"
+              component="img"
+              image={this.props.gif.url}
+              title="giphy"
+            />
+            <CardContent></CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              id={this.props.gif.id}
+              onClick={() => this.next()}
+            >
+              Enter the site
+            </Button>
+          </CardActions>
+        </Card>
       </div>
     );
   }

@@ -40,8 +40,7 @@ class UserPage extends Component {
       <>
         <div className="text-center userPage">
           <h1 id="welcome">Welcome, {this.props.user.username}!</h1>
-          <p>Your ID is: {this.props.user.id}</p>
-          <LogOutButton className="log-in" />
+          <h2>Categories</h2>
 
           <br />
           {this.state.data.map((videoItem, i) => {
