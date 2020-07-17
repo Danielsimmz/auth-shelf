@@ -1,15 +1,9 @@
-/* body {
-      background-image: url('./roger.jpg');
-
-} */
-
 .display {
-    background-image: url('./roger.jpg');
+  background-image: url("./roger.jpg");
 }
 
 .media {
-    text-align: center;
-    max-width: 90%;
-    max-height: 30%;
-    
-  }
+  text-align: center;
+  max-width: 90%;
+  max-height: 30%;
+}

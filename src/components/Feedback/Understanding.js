@@ -12,7 +12,6 @@ import {
 
 //this component is for taking input on the user's understanding of content
 class Understanding extends Component {
-
   //this is the function for the next button that takes
   //the user to the next page in the process
   next = () => {
@@ -42,7 +41,6 @@ class Understanding extends Component {
       type: "GET_UNDERSTANDING",
       payload: this.state.input.understanding,
     });
-    console.log(this.state.input);
     //reset the state after submission
     this.setState({
       input: {

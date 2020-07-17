@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import {
   FormControl,
   Input,
@@ -10,32 +10,35 @@ import {
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
 class RegisterPage extends Component {
+  //set local state
   state = {
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   };
 
+  //this function dispatches an action to register user with a payload of the user's input
   registerUser = (event) => {
     event.preventDefault();
 
     if (this.state.username && this.state.password) {
       this.props.dispatch({
-        type: 'REGISTER',
+        type: "REGISTER",
         payload: {
           username: this.state.username,
           password: this.state.password,
         },
       });
     } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
+      this.props.dispatch({ type: "REGISTRATION_INPUT_ERROR" });
     }
-  } // end registerUser
+  }; // end registerUser
 
-  handleInputChangeFor = propertyName => (event) => {
+  //captures user input as you type and assigns it to a property
+  handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
     });
-  }
+  };
 
   render() {
     return (
@@ -113,9 +116,8 @@ class RegisterPage extends Component {
 // Instead of taking everything from state, we just want the error messages.
 // if you wanted you could write this code like this:
 // const mapStateToProps = ({errors}) => ({ errors });
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
 export default connect(mapStateToProps)(RegisterPage);
-

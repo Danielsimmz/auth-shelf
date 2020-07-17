@@ -30,7 +30,7 @@ class InfoPageItem extends Component {
 
   render() {
     return (
-      <ul className="display">
+      <ul className="display video">
         <li>
           <Paper elevation={3} variant="outlined">
             <ReactPlayer

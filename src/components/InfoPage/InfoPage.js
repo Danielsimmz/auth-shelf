@@ -10,6 +10,9 @@ import {
   InputLabel,
   Input,
   Button,
+  MenuItem,
+  Select,
+  FormHelperText,
 } from "@material-ui/core";
 // import EditForm from "../EditForm/EditForm";
 
@@ -25,17 +28,20 @@ class InfoPage extends Component {
     url: "",
   };
 
+  //this allows the DOM to load when all the required items have been fetched
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_VIDEOS" });
     this.props.dispatch({ type: "FETCH_FEEDBACK" });
   }
 
+  //this function sends the captured data of new video to server
   postVideos = () => {
     console.log("in onSubmit");
     Axios.post("/api/shelf", {
       url: this.state.url,
       category_id: this.state.category_id,
     })
+    //this resets the state
       .then((result) => {
         this.setState({ category_id: "", url: "" });
         this.props.dispatch({ type: "FETCH_VIDEOS" });
@@ -49,7 +55,6 @@ class InfoPage extends Component {
         <div className="container justify-content-center">
           <div className="row justify-content-around">
             <h2>Administrator:{this.props.user.username}</h2>
-
             <form className="text-center" onSubmit={() => this.postVideos()}>
               <FormControl>
                 <InputLabel htmlFor="videoUrl" name="videoUrl">
@@ -70,32 +75,39 @@ class InfoPage extends Component {
               </FormControl>
               <br />
               <FormControl>
-                <InputLabel htmlFor="category_id" name="category">
-                  CATEGORY:
+                <InputLabel id="demo-simple-select-helper-label">
+                  Category
                 </InputLabel>
-                <Input
-                  type="number"
+                <Select
+                  labelId="demo-simple-select-helper-label"
+                  id="demo-simple-select-helper"
                   value={this.state.category_id}
-                  placeholder="1-5"
                   onChange={(e) =>
                     this.setState({ category_id: e.target.value })
                   }
-                />
-                <br />
-                <Button variant="contained" color="primary" type="submit" value="Upload Video">
+                >
+                  <MenuItem value={1}>One</MenuItem>
+                  <MenuItem value={2}>Two</MenuItem>
+                  <MenuItem value={3}>Three</MenuItem>
+                  <MenuItem value={4}>Four</MenuItem>
+                  <MenuItem value={5}>Five</MenuItem>
+                </Select>
+                <FormHelperText>Choose Category from 1-5</FormHelperText>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  value="Upload Video"
+                >
                   Upload
                 </Button>
               </FormControl>
             </form>
-
             <ul className="display">
               {this.props.videos.map((item) => {
-                
-
                 return <InfoPageItem key={item.id} item={item} />;
               })}
             </ul>
-
             <FeedbackForm feedback={this.props.feedback} />;
             {/* <FeedbackForm key={feedbacks.id} feedback={this.props.feedback} feedbacks={feedbacks} />; */}
             {/* {this.props.feedback.map((feedbacks) => {

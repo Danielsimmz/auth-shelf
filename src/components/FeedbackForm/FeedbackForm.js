@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Table, TableBody, TableCell, TableContainer, TableRow, TableHead, Paper } from "@material-ui/core";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  TableHead,
+  Paper,
+} from "@material-ui/core";
 import "./feedbackForm.css";
 
 class FeedbackForm extends Component {

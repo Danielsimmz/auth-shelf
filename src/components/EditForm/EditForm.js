@@ -4,7 +4,7 @@ import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { TextField, Input, Button } from "@material-ui/core";
+import { MenuItem, Input, Button, FormControl, InputLabel, Select, FormHelperText } from "@material-ui/core";
 
 class EditForm extends Component {
   // setting local state for the inputs
@@ -20,18 +20,13 @@ class EditForm extends Component {
     this.changeState();
   }
 
+  //this function takes local state and assigns it to the value of the props
   changeState = () => {
-    let value = 0;
-    console.log("this is changeState");
-
     for (let i = 0; i < this.props.video.length; i++) {
       const element = this.props.video[i];
-      console.log("this is the element", element);
-
       let id = this.props.video.id;
       let url = element.url;
       let category_id = element.category_id;
-      console.log(value);
       return this.setState({
         url: url,
         category_id: category_id,
@@ -39,8 +34,8 @@ class EditForm extends Component {
       });
     }
   };
+
   handleSubmit = () => {
-    console.log("this is handlesubmit:", this.state);
     const payload = {
       id: this.props.video.id,
       url: this.state.url,
@@ -84,7 +79,7 @@ class EditForm extends Component {
     });
   };
 
-  //uses the Redirect to back to details page with the confirmation box
+  //uses the Redirect to go back to edit page with the confirmation box
   renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to="/edit" />;
@@ -95,19 +90,35 @@ class EditForm extends Component {
     return (
       <>
         <form onSubmit={this.submit}>
-          Video URL:
-          <Input
-            type="text"
-            value={this.state.url}
-            onChange={(event) => this.handleChange("url", event)}
-          />
+          <FormControl>
+            <InputLabel id="demo-simple-select-helper-label">
+              Video url
+            </InputLabel>
+            <Input
+              type="text"
+              value={this.state.url}
+              onChange={(event) => this.handleChange("url", event)}
+            />
+          </FormControl>
           <br />
-          category_id:
-          <TextField
-            type="number"
-            value={this.state.category_id}
-            onChange={(event) => this.handleChange("category_id", event)}
-          />
+          <FormControl>
+            <InputLabel id="demo-simple-select-helper-label">
+              Category id
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-helper-label"
+              id="demo-simple-select-helper"
+              value={this.state.category_id}
+              onChange={(event) => this.handleChange("category_id", event)}
+            >
+              <MenuItem value={1}>One</MenuItem>
+              <MenuItem value={2}>Two</MenuItem>
+              <MenuItem value={3}>Three</MenuItem>
+              <MenuItem value={4}>Four</MenuItem>
+              <MenuItem value={5}>Five</MenuItem>
+            </Select>
+            <FormHelperText>Choose category from 1-5</FormHelperText>
+          </FormControl>
           <br />
           <Link to="/admin">
             <Button
@@ -123,7 +134,9 @@ class EditForm extends Component {
             color="primary"
             type="submit"
             value="Submit"
-          >Confirm</Button>
+          >
+            Confirm
+          </Button>
         </form>
       </>
     );
@@ -132,7 +145,6 @@ class EditForm extends Component {
 
 // bringing in the video details to use as props
 const mapStateToProps = (state) => {
-
   return {
     video: state.details,
   };

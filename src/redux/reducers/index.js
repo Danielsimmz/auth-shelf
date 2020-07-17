@@ -28,7 +28,7 @@ const rootReducer = combineReducers({
   showCategory,
   details,
   feedback,
-  feedbackForm
+  feedbackForm,
 });
 
 export default rootReducer;

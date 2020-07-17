@@ -13,7 +13,6 @@ import {
 
 //this component is for taking input on the user's quality rating
 class Quality extends Component {
-
   //this is the function for the next button that takes
   //the user to the next page in the process
   next = () => {
@@ -40,7 +39,6 @@ class Quality extends Component {
   handleClick = () => {
     const { dispatch } = this.props;
     dispatch({ type: "GET_QUALITY", payload: this.state.input.quality });
-    console.log(this.state.input);
     //reset the state after submission
     this.setState({
       input: {
@@ -80,7 +78,7 @@ class Quality extends Component {
             </Select>
             <FormHelperText>Choose rating from 0-10</FormHelperText>
             <p>
-              <b>Rate the quality of the content?</b>
+              <b>Rate the quality of the content!</b>
             </p>
           </FormControl>
           <Button

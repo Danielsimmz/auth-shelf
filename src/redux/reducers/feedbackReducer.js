@@ -1,5 +1,5 @@
 const feedbackReducer = (state = {}, action) => {
-  let newState = {...state};
+  let newState = { ...state };
   if (action.type === "GET_UNDERSTANDING") {
     newState = { ...state, understanding: action.payload };
   } else if (action.type === "GET_QUALITY") {

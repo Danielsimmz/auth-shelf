@@ -10,11 +10,6 @@ class DetailsPage extends Component {
     this.props.dispatch({ type: "FETCH_VIDEOSS" });
   }
 
-  //   componentWillUnmount() {
-  //     // use component will unmount to store info for page so that when you come back to page the info reloads with did mount
-  //     this.props.dispatch({ type: "FETCH_VIDEOSS" });
-  //   }
-
   //this function loops through the array of videos and finds the ones that match with the category that was clicked
   mountVideos = () => {
     for (let object of this.props.video) {

@@ -70,7 +70,7 @@ function* fetchFeedback() {
 // this is the saga that is used to edit the current data inside the server
 function* editVideo(action) {
   try {
-    console.log("this is the action payload",action.payload);
+    console.log("this is the action payload", action.payload);
     console.log("this is the action payload ID", action.payload.id);
     yield axios.put(`/api/shelf/`, action.payload);
     const response = yield axios.get(`/api/shelf/${action.payload.id}`);
@@ -95,7 +95,7 @@ function* fetchDetails(action) {
   try {
     const response = yield axios.get(`/api/shelf/${action.payload}`);
     console.log("this is fetchDetails:", response.data);
-    yield put({ type: "SET_DETAILSS", payload: response.data[0]});
+    yield put({ type: "SET_DETAILSS", payload: response.data[0] });
   } catch (error) {
     console.log("Error getting movies ", error);
   }

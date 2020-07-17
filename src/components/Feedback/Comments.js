@@ -2,16 +2,10 @@ import React, { Component } from "react";
 //import axios from "axios";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import {
-  FormControl,
-  Input,
-  Button,
-  InputLabel,
-} from "@material-ui/core";
+import { FormControl, Input, Button, InputLabel } from "@material-ui/core";
 
 //this component is for taking input on the user's comments
 class Comments extends Component {
-
   //this function takes you ro the next page in the steps
   next = (event) => {
     this.props.history.push("/review");
@@ -37,7 +31,6 @@ class Comments extends Component {
   handleClick = () => {
     const { dispatch } = this.props;
     dispatch({ type: "GET_COMMENTS", payload: this.state.input.comments });
-    console.log(this.state.input);
     //reset the state
     this.setState({
       input: {
@@ -52,19 +45,21 @@ class Comments extends Component {
         <header className="App-header">
           <h1 className="App-title">Feedback!</h1>
           <h4>
-            <i>Don't forget it!</i>
+            <i>Your feedback is valued!</i>
           </h4>
         </header>
         <form>
           <FormControl>
-            <InputLabel id="demo-simple-select-helper-label">Comments</InputLabel>
+            <InputLabel id="demo-simple-select-helper-label">
+              Comments
+            </InputLabel>
             <Input
               placeholder="Add comments"
               onChange={(event) => this.handleChange(event)}
             ></Input>
           </FormControl>
           <p>
-            <b>Your feedback is valued!</b>
+            <b>Any Comments you wish to leave!</b>
           </p>
           <Button
             id="review"

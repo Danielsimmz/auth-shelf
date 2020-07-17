@@ -7,8 +7,6 @@ import {
   InputLabel,
   InputAdornment,
   Button,
-  Typography,
-  Link,
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
@@ -18,9 +16,12 @@ class LoginPage extends Component {
     password: "",
   };
 
+  //takes user to next page
   next = () => {
     this.props.history.push("/home");
   };
+
+  //function dispatches action that contains user info to login
   login = (event) => {
     event.preventDefault();
 
@@ -38,23 +39,12 @@ class LoginPage extends Component {
     this.next();
   }; // end login
 
+  //captures user input and assigns it to a value when typing
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
     });
   };
- copyright=() => {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
   render() {
     return (
@@ -86,6 +76,8 @@ class LoginPage extends Component {
                 }
               />
             </FormControl>
+          </div>
+          <div>
             <FormControl>
               <InputLabel htmlFor="password" name="password">
                 Password
@@ -125,7 +117,6 @@ class LoginPage extends Component {
             Register
           </Button>
         </center>
-        {this.copyright}
       </div>
     );
   }
@@ -138,4 +129,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default (withRouter)(connect(mapStateToProps)(LoginPage));
+export default withRouter(connect(mapStateToProps)(LoginPage));

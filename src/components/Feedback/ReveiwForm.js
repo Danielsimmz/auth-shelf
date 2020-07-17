@@ -43,18 +43,14 @@ class ReviewForm extends Component {
   //   };
   //this function loops through the array of feedback and
   postFeedback = () => {
-    console.log(`FEEDBACK POST IS: `, this.props.user);
     const payload = { feedback: this.props.feedback, user: this.props.user };
     axios
       .post("/api/user/feedback", payload)
       .then(() => {
-        console.log("SENDING:", this.props.feedback);
         //clear global state
         // this.props.dispatch({ type: 'GET_FEEDBACK', payload:this.props.feedback });
       })
-      .catch((error) => {
-        console.log("SORRY, couldnt send post", error);
-      });
+      .catch((error) => {});
     this.next();
   };
 

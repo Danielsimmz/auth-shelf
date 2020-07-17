@@ -13,7 +13,6 @@ import {
 
 //this component is for taking input on the user's interest level
 class Interest extends Component {
-
   //this is the function for the next button that takes
   //the user to the next page in the process
   next = () => {
@@ -35,6 +34,7 @@ class Interest extends Component {
       },
     });
   };
+
   //take captured local state and send in an action payload to reducer
   handleClick = () => {
     const { dispatch } = this.props;
