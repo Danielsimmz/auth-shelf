@@ -51,7 +51,7 @@ class Interest extends Component {
   render() {
     return (
       <div>
-        <header className="App-header">
+        <header className="App-header user">
           <h1 className="App-title">Feedback!</h1>
           <h4>
             <i>Your feedback is valued!</i>
@@ -84,16 +84,16 @@ class Interest extends Component {
                 How interested are you in playing tennis after watching videos?
               </b>
             </p>
+            <Button
+              id="review"
+              variant="contained"
+              color="primary"
+              type="submit"
+              onClick={(event) => this.handleClick(event)}
+            >
+              Next
+            </Button>
           </FormControl>
-          <Button
-            id="review"
-            variant="contained"
-            color="primary"
-            type="submit"
-            onClick={(event) => this.handleClick(event)}
-          >
-            Next
-          </Button>
         </form>
       </div>
     );

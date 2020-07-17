@@ -11,3 +11,11 @@
 .video {
   opacity: 90%;
 }
+
+.user {
+  text-align: center;
+}
+
+#feedbackHeader {
+  color: antiquewhite;
+}

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import ReactPlayer from "react-player";
 import { Paper } from "@material-ui/core";
+import "./DetailsPage.css"
 
 class DetailsPage extends Component {
   componentDidMount() {
@@ -29,12 +30,18 @@ class DetailsPage extends Component {
       <>
         <div className="container justify-content-center">
           <div className="row justify-content-around">
-            <h3>
-              This is the Videos associated with Category:
-              <br />
-              {this.props.category.name}
-            </h3>
-            <Paper className="paper" elevation={3} variant="outlined">
+            <span className="user">
+              <h2>
+                This is the Videos associated with Category:
+                <br />
+                {this.props.category.name}
+              </h2>
+            </span>
+            <Paper
+              className="paper display"
+              elevation={3}
+              variant="outlined"
+            >
               {this.mountVideos()}
             </Paper>
           </div>

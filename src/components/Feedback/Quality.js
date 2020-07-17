@@ -49,7 +49,7 @@ class Quality extends Component {
   render() {
     return (
       <div>
-        <header className="App-header">
+        <header className="App-header user">
           <h1 className="App-title">Feedback!</h1>
           <h4>
             <i>Your feedback is valued!</i>
@@ -80,16 +80,16 @@ class Quality extends Component {
             <p>
               <b>Rate the quality of the content!</b>
             </p>
+            <Button
+              id="review"
+              color="primary"
+              type="submit"
+              variant="contained"
+              onClick={(event) => this.handleClick(event)}
+            >
+              Next
+            </Button>
           </FormControl>
-          <Button
-            id="review"
-            color="primary"
-            type="submit"
-            variant="contained"
-            onClick={(event) => this.handleClick(event)}
-          >
-            Next
-          </Button>
         </form>
       </div>
     );

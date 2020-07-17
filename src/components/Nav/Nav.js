@@ -5,9 +5,8 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 import "./Nav.css";
 
 const Nav = (props) => (
-  <div className="nav" position="static">
+  <div className="nav">
     <Link to="/welcome">
-      <img scr= "./tennis.jpg" alt=""/>
       <h2 className="nav-title">Tennis Gurus</h2>
     </Link>
     <div className="nav-right">

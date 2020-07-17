@@ -71,7 +71,7 @@ class InfoPage extends Component {
     return (
       <>
         <div className="container justify-content-center">
-          <div className="row justify-content-around">
+          <div className="row justify-content-around user">
             <h2>Administrator:{this.props.user.username}</h2>
             <form className="text-center" onSubmit={() => this.submit()}>
               <FormControl>
@@ -120,7 +120,10 @@ class InfoPage extends Component {
                 return <InfoPageItem key={item.id} item={item} />;
               })}
             </ul>
-            <FeedbackForm feedback={this.props.feedback} />;
+            <span id="feedbackHeader">
+              <h1>FeedbackTable</h1>
+            </span>
+            <FeedbackForm feedback={this.props.feedback} />
           </div>
         </div>
       </>

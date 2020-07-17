@@ -42,7 +42,7 @@ class Comments extends Component {
   render() {
     return (
       <div>
-        <header className="App-header">
+        <header className="App-header user">
           <h1 className="App-title">Feedback!</h1>
           <h4>
             <i>Your feedback is valued!</i>
@@ -57,19 +57,19 @@ class Comments extends Component {
               placeholder="Add comments"
               onChange={(event) => this.handleChange(event)}
             ></Input>
+            <p>
+              <b>Leave some comments about anything you would us to know!</b>
+            </p>
+            <Button
+              id="review"
+              variant="contained"
+              color="primary"
+              type="submit"
+              onClick={(event) => this.handleClick(event)}
+            >
+              Next
+            </Button>
           </FormControl>
-          <p>
-            <b>Any Comments you wish to leave!</b>
-          </p>
-          <Button
-            id="review"
-            variant="contained"
-            color="primary"
-            type="submit"
-            onClick={(event) => this.handleClick(event)}
-          >
-            Next
-          </Button>
         </form>
       </div>
     );

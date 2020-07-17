@@ -13,7 +13,7 @@
 
 .nav-link {
   float: left;
-  color: #f2f2f2;
+  color: #060606;
   background-color: #93f316;
   text-align: center;
   padding: 24px 10px;
@@ -33,4 +33,10 @@
 
 .nav-right {
   float: right;
+}
+
+.tennis{
+  max-width:3%;
+  height:auto;
+  margin-left: 8%;
 }

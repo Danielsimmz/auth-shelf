@@ -58,7 +58,7 @@ class ReviewForm extends Component {
 
     //   const { feeling, understanding, support, comments } = this.props.feedback;
     return (
-      <div>
+      <div className="user">
         <h2>Review your feedback</h2>
         <form>
           <List component="nav" aria-label="contacts">

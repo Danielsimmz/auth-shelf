@@ -12,3 +12,11 @@
     text-align: center;
     align-items: center;
 }
+
+.details {
+  opacity: 30%;
+}
+
+#vid {
+  opacity: 100%;
+}
