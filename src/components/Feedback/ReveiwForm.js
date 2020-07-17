@@ -4,9 +4,14 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
-import { Button, List, ListItem, ListItemIcon, ListItemText, } from "@material-ui/core";
+import {
+  Button,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@material-ui/core";
 import StarIcon from "@material-ui/icons/Star";
-
 
 class ReviewForm extends Component {
   //this is the function for the next button that takes
@@ -61,19 +66,6 @@ class ReviewForm extends Component {
       <div>
         <h2>Review your feedback</h2>
         <form>
-          <ul>
-            <li>
-              Understanding: {this.props.feedback.understanding}
-              <br />
-              Quality: {this.props.feedback.quality}
-              <br />
-              Interest Level: {this.props.feedback.interest}
-              <br />
-              Comments: {this.props.feedback.comments}
-            </li>
-          </ul>
-
-          <br />
           <List component="nav" aria-label="contacts">
             <ListItem button>
               <ListItemIcon>
@@ -84,7 +76,19 @@ class ReviewForm extends Component {
             <ListItem button>
               <ListItemText
                 inset
-                primary= {this.props.feedback.understanding}
+                primary={`Understanding: ${this.props.feedback.understanding} `}
+              />
+            </ListItem>
+            <ListItem button>
+              <ListItemText
+                inset
+                primary={`Quality: ${this.props.feedback.quality} `}
+              />
+            </ListItem>
+            <ListItem button>
+              <ListItemText
+                inset
+                primary={`Interest Level: ${this.props.feedback.interest} `}
               />
             </ListItem>
           </List>
