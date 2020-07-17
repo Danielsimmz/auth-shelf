@@ -17,7 +17,6 @@ import {
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
-
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -79,12 +78,6 @@ class InfoPage extends Component {
                 <InputLabel htmlFor="videoUrl" name="videoUrl">
                   Video URL:
                 </InputLabel>
-                {/* <Input
-                id="input-with-icon-adornment"
-                value={this.state.username}
-                placeholder="name@example.com"
-                variant="contained"
-                onChange={this.handleInputChangeFor("username")} */}
                 <Input
                   type="text"
                   value={this.state.url}
@@ -128,10 +121,6 @@ class InfoPage extends Component {
               })}
             </ul>
             <FeedbackForm feedback={this.props.feedback} />;
-            {/* <FeedbackForm key={feedbacks.id} feedback={this.props.feedback} feedbacks={feedbacks} />; */}
-            {/* {this.props.feedback.map((feedbacks) => {
-              return <FeedbackForm key={feedbacks.id} feedbacks={feedbacks} />;
-            })} */}
           </div>
         </div>
       </>

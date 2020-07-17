@@ -43,7 +43,6 @@ router.get("/feedback", (req, res) => {
   pool
     .query(queryText)
     .then((result) => {
-      console.log("getting feedback", result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
@@ -59,7 +58,6 @@ router.get("/feedbackform", (req, res) => {
     .query(queryText)
     .then((result) => {
       res.send(result.rows);
-      console.log(result.rows);
     })
     .catch((error) => {
       console.log(`Error on query ${error}`);
@@ -76,7 +74,6 @@ GROUP BY category.name;`;
     .query(queryText)
     .then((result) => {
       res.send(result.rows);
-      console.log(result.rows);
     })
     .catch((error) => {
       console.log(`Error on query ${error}`);
@@ -88,8 +85,6 @@ GROUP BY category.name;`;
  * Add an item for the logged in user to the shelf
  */
 router.post("/", rejectUnauthenticated, (req, res) => {
-  console.log("Adding item to the stack");
-
   const url = req.body.url;
   const category_id = req.body.category_id;
   // const user = req.user.id;
@@ -107,8 +102,6 @@ router.post("/", rejectUnauthenticated, (req, res) => {
  */
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   let id = req.params.id;
-  console.log(`ID from params: ${id}`);
-
   let queryText = `
     DELETE FROM videos WHERE id = $1`;
   pool
@@ -121,8 +114,6 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
  * Update an item if it's something the logged in user added
  */
 router.put("/", rejectUnauthenticated, (req, res) => {
-  console.log("this is req.body:", req.body);
-
   const video = req.body;
   const queryText = `
     UPDATE videos SET url = $1, category_id = $2 WHERE id = $3`;
@@ -148,7 +139,6 @@ WHERE videos.id=$1`;
   pool
     .query(queryText, [videoId])
     .then((result) => {
-      console.log("Success in getting movie details!", result.rows);
       res.send(result.rows); // send the result --> the movies
     })
     .catch((error) => {

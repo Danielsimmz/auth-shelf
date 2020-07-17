@@ -7,6 +7,7 @@ import "./Nav.css";
 const Nav = (props) => (
   <div className="nav" position="static">
     <Link to="/welcome">
+      <img scr= "./tennis.jpg" alt=""/>
       <h2 className="nav-title">Tennis Gurus</h2>
     </Link>
     <div className="nav-right">

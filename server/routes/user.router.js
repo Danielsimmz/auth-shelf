@@ -23,8 +23,6 @@ router.get("/giphy", (req, res) => {
       res.send(response.data);
     })
     .catch((err) => {
-      console.log(err);
-
       res.sendStatus(500);
     });
 });
@@ -67,14 +65,10 @@ const user_id = req.body.user.id;
   const insertData = `INSERT INTO "feedback"
     ( "understanding", "quality", "interest", "comments", "user_id")
     VALUES($1, $2, $3, $4, $5);`;
-  
-  console.log(req.body);
-  
   //send to database
   pool
     .query(insertData, [understanding, quality, interest, comments, user_id])
     .then((result) => {
-      console.log(result.rows);
       //if successful send status message
       res.sendStatus(201);
     })
