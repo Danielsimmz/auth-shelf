@@ -14,7 +14,9 @@ import {
   Select,
   FormHelperText,
 } from "@material-ui/core";
-// import EditForm from "../EditForm/EditForm";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -41,12 +43,29 @@ class InfoPage extends Component {
       url: this.state.url,
       category_id: this.state.category_id,
     })
-    //this resets the state
+      //this resets the state
       .then((result) => {
         this.setState({ category_id: "", url: "" });
         this.props.dispatch({ type: "FETCH_VIDEOS" });
       })
       .catch((error) => console.log(error));
+  };
+
+  submit = () => {
+    confirmAlert({
+      title: "Confirm to Upload",
+      message: "Are you sure you want to upload this video?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => this.postVideos(),
+        },
+        {
+          label: "No",
+          onClick: () => this.setState({ redirect: true }),
+        },
+      ],
+    });
   };
 
   render() {
@@ -55,7 +74,7 @@ class InfoPage extends Component {
         <div className="container justify-content-center">
           <div className="row justify-content-around">
             <h2>Administrator:{this.props.user.username}</h2>
-            <form className="text-center" onSubmit={() => this.postVideos()}>
+            <form className="text-center" onSubmit={() => this.submit()}>
               <FormControl>
                 <InputLabel htmlFor="videoUrl" name="videoUrl">
                   Video URL:

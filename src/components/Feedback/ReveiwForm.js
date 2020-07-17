@@ -55,7 +55,6 @@ class ReviewForm extends Component {
   };
 
   render() {
-    console.log(this.props.feedback);
 
     //   const { feeling, understanding, support, comments } = this.props.feedback;
     return (

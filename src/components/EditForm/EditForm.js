@@ -64,7 +64,7 @@ class EditForm extends Component {
   submit = (event) => {
     event.preventDefault();
     confirmAlert({
-      title: "Confirm to submit",
+      title: "Confirm to Edit",
       message: "Are you sure you want to edit this?.",
       buttons: [
         {

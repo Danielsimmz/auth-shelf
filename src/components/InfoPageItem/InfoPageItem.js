@@ -5,9 +5,10 @@ import { Paper, IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { withRouter } from "react-router";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 class InfoPageItem extends Component {
-
   removeItem = () => {
     this.props.dispatch({
       type: "DELETE_VIDEO",
@@ -28,6 +29,23 @@ class InfoPageItem extends Component {
     this.props.history.push("/edit");
   }
 
+  submit = () => {
+    confirmAlert({
+      title: "Confirm to Delete",
+      message: "Are you sure you want to delete this video?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => this.removeItem(),
+        },
+        {
+          label: "No",
+          onClick: () => this.setState({ redirect: true }),
+        },
+      ],
+    });
+  };
+
   render() {
     return (
       <ul className="display video">
@@ -39,8 +57,6 @@ class InfoPageItem extends Component {
               controls
               url={this.props.item.url}
             />
-            <br />
-            {console.log("this is the category", this.props.item.name)}
             <IconButton aria-label="delete">
               <DeleteIcon
                 id={this.props.item.id}
@@ -48,7 +64,7 @@ class InfoPageItem extends Component {
                 color="secondary"
                 type="submit"
                 variant="contained"
-                onClick={(event) => this.removeItem(event)}
+                onClick={(event) => this.submit(event)}
               />
             </IconButton>
             <IconButton aria-label="edit">
