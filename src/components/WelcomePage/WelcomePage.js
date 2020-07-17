@@ -25,10 +25,10 @@ class WelcomePage extends Component {
     return (
       <div className="text-center display">
         {console.log(this.props.gif)}
-        <Card style={{ height: "550px", width: "450px" }}>
+        <Card style={{ height: "500px", width: "450px" }}>
           <CardActionArea>
             <Typography gutterBottom variant="h5" component="h2">
-              <h2>Welcome to the Tennis Gurus site</h2>
+              <b>Welcome to the Tennis Gurus site</b>
             </Typography>
             <CardMedia
               className="media"

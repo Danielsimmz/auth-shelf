@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LogOutButton from "../LogOutButton/LogOutButton";
 import Axios from "axios";
 import { withRouter } from "react-router";
 import UserPageList from "../UserPageList/UserPageList";

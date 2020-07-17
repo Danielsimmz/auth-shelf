@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import { Button } from "@material-ui/core";
 
 class ReviewForm extends Component {
   //this is the function for the next button that takes
@@ -75,15 +76,15 @@ class ReviewForm extends Component {
             </li>
           </ul>
           <br />
-          <button
+          <Button
             id="review"
-            variant="container"
+            variant="contained"
             color="primary"
             type="submit"
             onClick={() => this.submit()}
           >
-            submit
-          </button>
+            Submit Feedback
+          </Button>
         </form>
       </div>
     );

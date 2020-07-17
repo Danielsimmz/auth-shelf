@@ -2,26 +2,29 @@ import React, { Component } from "react";
 //import axios from "axios";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-//this component is for taking input on how the user feels supported
+import {
+  FormControl,
+  Input,
+  Button,
+  InputLabel,
+} from "@material-ui/core";
+
+//this component is for taking input on the user's comments
 class Comments extends Component {
+
   //this function takes you ro the next page in the steps
   next = (event) => {
     this.props.history.push("/review");
   };
 
-  //this function takes you back to the previous page in the steps
-//   previous = () => {
-//     this.props.history.push("/interest");
-//   };
-
-  //set state to local variable
+  //set global state to local
   state = {
     input: {
       comments: "",
     },
   };
 
-  //capture input value
+  //capture the selected input target and assign it to comments
   handleChange = (event) => {
     this.setState({
       input: {
@@ -29,7 +32,8 @@ class Comments extends Component {
       },
     });
   };
-  //store input value in global state
+
+  //take captured local state and send in an action payload to reducer
   handleClick = () => {
     const { dispatch } = this.props;
     dispatch({ type: "GET_COMMENTS", payload: this.state.input.comments });
@@ -51,31 +55,26 @@ class Comments extends Component {
             <i>Don't forget it!</i>
           </h4>
         </header>
-        <p>
-          <b>Any comments you want to leave</b>
-        </p>
-        {/*on submission this form will take you to the next page in the process */}
-        <form >
-          {/* <button
-            variant="container"
-            color="primary"
-            onClick={() => this.previous}
-          >
-            Previous
-          </button> */}
-          <input
-            placeholder="Add comments"
-            onChange={(event) => this.handleChange(event)}
-          ></input>
-          <button
+        <form>
+          <FormControl>
+            <InputLabel id="demo-simple-select-helper-label">Comments</InputLabel>
+            <Input
+              placeholder="Add comments"
+              onChange={(event) => this.handleChange(event)}
+            ></Input>
+          </FormControl>
+          <p>
+            <b>Your feedback is valued!</b>
+          </p>
+          <Button
             id="review"
-            variant="container"
+            variant="contained"
             color="primary"
             type="submit"
             onClick={(event) => this.handleClick(event)}
           >
             Next
-          </button>
+          </Button>
         </form>
       </div>
     );

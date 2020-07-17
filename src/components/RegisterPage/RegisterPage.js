@@ -98,7 +98,6 @@ class RegisterPage extends Component {
             color="secondary"
             variant="contained"
             className="link-button"
-            className="link-button"
             onClick={() => {
               this.props.dispatch({ type: "SET_TO_LOGIN_MODE" });
             }}

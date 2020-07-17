@@ -4,7 +4,7 @@ import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { TextField, Input } from "@material-ui/core";
+import { TextField, Input, Button } from "@material-ui/core";
 
 class EditForm extends Component {
   // setting local state for the inputs
@@ -110,9 +110,20 @@ class EditForm extends Component {
           />
           <br />
           <Link to="/admin">
-            <button className="btn btn-primary btn-lg">Back to Admin</button>
+            <Button
+              className="btn btn-primary btn-lg"
+              variant="contained"
+              color="secondary"
+            >
+              Cancel
+            </Button>
           </Link>
-          <input type="submit" value="Submit" />
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            value="Submit"
+          >Confirm</Button>
         </form>
       </>
     );

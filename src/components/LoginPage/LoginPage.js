@@ -9,8 +9,6 @@ import {
   Button,
   Typography,
   Link,
-  Grid,
-
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
@@ -61,11 +59,13 @@ class LoginPage extends Component {
   render() {
     return (
       <div className="home">
-        {this.props.errors.loginMessage && (
-          <h2 className="alert" role="alert">
-            {this.props.errors.loginMessage}
-          </h2>
-        )}
+        <span>
+          {this.props.errors.loginMessage && (
+            <h2 className="alert" role="alert">
+              {this.props.errors.loginMessage}
+            </h2>
+          )}
+        </span>
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
@@ -138,4 +138,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default withRouter(connect(mapStateToProps)(LoginPage));
+export default (withRouter)(connect(mapStateToProps)(LoginPage));

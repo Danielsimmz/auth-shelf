@@ -2,16 +2,22 @@ import React, { Component } from "react";
 //import axios from "axios";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import {
+  FormControl,
+  MenuItem,
+  FormHelperText,
+  Select,
+  InputLabel,
+  Button,
+} from "@material-ui/core";
 
+//this component is for taking input on the user's quality rating
 class Quality extends Component {
+
   //this is the function for the next button that takes
   //the user to the next page in the process
   next = () => {
     this.props.history.push("/interest");
-  };
-  //this function takes user to previous page
-  previous = () => {
-    this.props.history.push("/feedback");
   };
 
   //set state to local variable
@@ -21,7 +27,7 @@ class Quality extends Component {
     },
   };
 
-  //capture input value
+  //capture the selected input target and assign it to understanding
   handleChange = (event) => {
     this.setState({
       input: {
@@ -29,7 +35,8 @@ class Quality extends Component {
       },
     });
   };
-  //store input value in global state
+
+  //take captured local state and send in an action payload to reducer
   handleClick = () => {
     const { dispatch } = this.props;
     dispatch({ type: "GET_QUALITY", payload: this.state.input.quality });
@@ -47,37 +54,44 @@ class Quality extends Component {
         <header className="App-header">
           <h1 className="App-title">Feedback!</h1>
           <h4>
-            <i>Don't forget it!</i>
+            <i>Your feedback is valued!</i>
           </h4>
         </header>
-        <p>
-          <b>Rate the quality of the content?</b>
-        </p>
-        {/*on submission this form will take you to the next page in the process */}
         <form onSubmit={() => this.next()}>
-          <button
-            variant="container"
-            color="primary"
-            onClick={() => this.previous()}
-          >
-            Previous
-          </button>
-          <input
-            value={this.state.input.quality}
-            type="number"
-            min="0"
-            max="10"
-            placeholder="Choose from 1-10"
-            onChange={(event) => this.handleChange(event)}
-          ></input>
-          <button
+          <FormControl>
+            <InputLabel id="demo-simple-select-helper-label">Rating</InputLabel>
+            <Select
+              labelId="demo-simple-select-helper-label"
+              id="demo-simple-select-helper"
+              value={this.state.input.quality}
+              onChange={(event) => this.handleChange(event)}
+            >
+              <MenuItem value={0}>Zero</MenuItem>
+              <MenuItem value={1}>One</MenuItem>
+              <MenuItem value={2}>Two</MenuItem>
+              <MenuItem value={3}>Three</MenuItem>
+              <MenuItem value={4}>Four</MenuItem>
+              <MenuItem value={5}>Five</MenuItem>
+              <MenuItem value={6}>Six</MenuItem>
+              <MenuItem value={7}>Seven</MenuItem>
+              <MenuItem value={8}>Eight</MenuItem>
+              <MenuItem value={9}>Nine</MenuItem>
+              <MenuItem value={10}>Ten</MenuItem>
+            </Select>
+            <FormHelperText>Choose rating from 0-10</FormHelperText>
+            <p>
+              <b>Rate the quality of the content?</b>
+            </p>
+          </FormControl>
+          <Button
             id="review"
             color="primary"
             type="submit"
+            variant="contained"
             onClick={(event) => this.handleClick(event)}
           >
             Next
-          </button>
+          </Button>
         </form>
       </div>
     );
