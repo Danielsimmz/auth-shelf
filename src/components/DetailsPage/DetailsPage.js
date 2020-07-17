@@ -17,11 +17,8 @@ class DetailsPage extends Component {
 
   //this function loops through the array of videos and finds the ones that match with the category that was clicked
   mountVideos = () => {
-    console.log(this.props.video);
     for (let object of this.props.video) {
       if (this.props.category.name === object.name) {
-        console.log(object);
-
         return object.videos.map((video) => (
           <ul className="display">
             <li>
@@ -42,11 +39,9 @@ class DetailsPage extends Component {
               <br />
               {this.props.category.name}
             </h3>
-            
-              <Paper elevation={3} variant="outlined" >
-                {this.mountVideos()}
-              </Paper>
-            
+            <Paper className="paper" elevation={3} variant="outlined">
+              {this.mountVideos()}
+            </Paper>
           </div>
         </div>
       </>

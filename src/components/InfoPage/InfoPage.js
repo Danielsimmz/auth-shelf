@@ -90,16 +90,17 @@ class InfoPage extends Component {
 
             <ul className="display">
               {this.props.videos.map((item) => {
-                console.log("These are the video items", item);
+                
 
                 return <InfoPageItem key={item.id} item={item} />;
               })}
             </ul>
 
-            {this.props.feedback.map((feedbacks) => {
-              console.log("These are the feedback items", feedbacks);
+            <FeedbackForm feedback={this.props.feedback} />;
+            {/* <FeedbackForm key={feedbacks.id} feedback={this.props.feedback} feedbacks={feedbacks} />; */}
+            {/* {this.props.feedback.map((feedbacks) => {
               return <FeedbackForm key={feedbacks.id} feedbacks={feedbacks} />;
-            })}
+            })} */}
           </div>
         </div>
       </>

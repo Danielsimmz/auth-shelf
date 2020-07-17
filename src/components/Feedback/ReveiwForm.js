@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
-import { Button } from "@material-ui/core";
+import { Button, List, ListItem, ListItemIcon, ListItemText, } from "@material-ui/core";
+import StarIcon from "@material-ui/icons/Star";
+
 
 class ReviewForm extends Component {
   //this is the function for the next button that takes
@@ -59,11 +61,6 @@ class ReviewForm extends Component {
       <div>
         <h2>Review your feedback</h2>
         <form>
-          {/*<button variant="container" color="primary" onClick={this.previous}>
-            Previous
-    </button>*/}
-          {/* {this.props.feedback.map((feedbacks, index) => {
-        return ( */}
           <ul>
             <li>
               Understanding: {this.props.feedback.understanding}
@@ -75,7 +72,23 @@ class ReviewForm extends Component {
               Comments: {this.props.feedback.comments}
             </li>
           </ul>
+
           <br />
+          <List component="nav" aria-label="contacts">
+            <ListItem button>
+              <ListItemIcon>
+                <StarIcon />
+              </ListItemIcon>
+              <ListItemText primary={this.props.feedback.comments} />
+            </ListItem>
+            <ListItem button>
+              <ListItemText
+                inset
+                primary= {this.props.feedback.understanding}
+              />
+            </ListItem>
+          </List>
+
           <Button
             id="review"
             variant="contained"
