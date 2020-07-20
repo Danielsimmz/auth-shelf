@@ -12,13 +12,16 @@ import {
 import "./WelcomePage.css";
 import { connect } from "react-redux";
 
-//this component is for taking input on how the user feels supported
+//this component loads up the welcome page when you start website
 class WelcomePage extends Component {
+
+  //on starting the page dispatches an action to retrieve
+  //a random gif to use on page when it loads
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_GIFS" });
   }
   next = () => {
-    this.props.history.push("/home"); //takes customer to next "page"
+    this.props.history.push("/home"); //takes user to "home" page
   };
 
   render() {

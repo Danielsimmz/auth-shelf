@@ -16,6 +16,8 @@ class InfoPageItem extends Component {
     });
   };
 
+  //this function takes user to edit form after clicking edit
+  //icon by dispatching action with payload of video id
   editItem = (e) => {
     this.props.dispatch({
       type: "EDIT_VIDEOS",
@@ -25,11 +27,15 @@ class InfoPageItem extends Component {
 
     this.edit();
   };
+
+  //this function takes user to route /edit which is the
+  //edit form
   edit() {
     this.props.history.push("/edit");
   }
 
-  submit = () => {
+  //alert for confirmation before deleting selected video
+  delete = () => {
     confirmAlert({
       title: "Confirm to Delete",
       message: "Are you sure you want to delete this video?",
@@ -64,7 +70,7 @@ class InfoPageItem extends Component {
                 color="secondary"
                 type="submit"
                 variant="contained"
-                onClick={(event) => this.submit(event)}
+                onClick={(event) => this.delete(event)}
               />
             </IconButton>
             <IconButton aria-label="edit">

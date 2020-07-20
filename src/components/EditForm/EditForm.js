@@ -60,7 +60,7 @@ class EditForm extends Component {
     });
   };
 
-  // confirmation box before you edit the movie
+  // confirmation alert before you edit the video
   submit = (event) => {
     event.preventDefault();
     confirmAlert({

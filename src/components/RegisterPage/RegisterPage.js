@@ -16,7 +16,8 @@ class RegisterPage extends Component {
     password: "",
   };
 
-  //this function dispatches an action to register user with a payload of the user's input
+  //this function dispatches an action to register user 
+  //with a payload of the user's input
   registerUser = (event) => {
     event.preventDefault();
 

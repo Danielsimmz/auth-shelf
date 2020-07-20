@@ -9,6 +9,7 @@ import "./UserPage.css";
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
 class UserPage extends Component {
+  //setting state to local
   state = {
     data: [""],
     category_id: "",
@@ -16,14 +17,13 @@ class UserPage extends Component {
     isEditable: false,
   };
 
+  //doesn't allow page to load on DOM before necessary 
+  //elements have been summoned
   componentDidMount() {
     this.getVideos();
   }
 
-  // componentWillUnmount() {
-  //   this.getImages();
-  // }
-
+  //
   getVideos = () => {
     Axios.get("/api/shelf")
       .then((result) => {

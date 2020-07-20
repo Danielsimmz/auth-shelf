@@ -50,6 +50,7 @@ class InfoPage extends Component {
       .catch((error) => console.log(error));
   };
 
+  //alert for confirmation before uploading new video
   submit = () => {
     confirmAlert({
       title: "Confirm to Upload",
@@ -74,6 +75,7 @@ class InfoPage extends Component {
           <div className="row justify-content-around user">
             <h2>Administrator:{this.props.user.username}</h2>
             <form className="text-center" onSubmit={() => this.submit()}>
+              <h2>Post new Video</h2>
               <FormControl>
                 <InputLabel htmlFor="videoUrl" name="videoUrl">
                   Video URL:
@@ -115,6 +117,8 @@ class InfoPage extends Component {
                 </Button>
               </FormControl>
             </form>
+            <br />
+            <h2>Videos</h2>
             <ul className="display">
               {this.props.videos.map((item) => {
                 return <InfoPageItem key={item.id} item={item} />;
@@ -130,6 +134,7 @@ class InfoPage extends Component {
     );
   }
 }
+
 
 const mapStateToProps = (state) => ({
   user: state.user,

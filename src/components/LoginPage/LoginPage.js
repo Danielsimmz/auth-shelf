@@ -11,6 +11,7 @@ import {
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
 class LoginPage extends Component {
+  //setting state to local
   state = {
     username: "",
     password: "",

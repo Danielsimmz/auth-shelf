@@ -41,19 +41,20 @@ class App extends Component {
         <div>
           <Nav />
           <Switch>
-            {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
+            {/* Visiting localhost:3000 will redirect to localhost:3000/welcome */}
             <Redirect exact from="/" to="/welcome" />
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
             <Route exact path="/about" component={AboutPage} />
-            {/*This page will pop up first when loaded and this will be the welcome page that user sees when they first load browser*/}
+            {/*This page will pop up first when loaded and this will be the welcome page 
+            //that user sees when they first load browser*/}
             <Route exact path="/welcome" component={WelcomePage} />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
             <ProtectedRoute exact path="/home" component={UserPage} />
-            {/* This works the same as the other protected route, except that if the user is logged in,
+            {/* This works the same as the other protected route, except that if the user is logged in as admin,
             they will see the info page instead. */}
             <AdminRoute exact path="/admin" component={InfoPage} />
             <AdminRoute exact path="/edit" component={EditForm} />

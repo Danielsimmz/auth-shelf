@@ -39,6 +39,7 @@ class Comments extends Component {
     });
     this.next();
   };
+
   render() {
     return (
       <div>
@@ -58,7 +59,9 @@ class Comments extends Component {
               onChange={(event) => this.handleChange(event)}
             ></Input>
             <p>
-              <b>Leave some comments about anything you would us to know!</b>
+              <b>
+                Leave some comments about anything you would like us to know!
+              </b>
             </p>
             <Button
               id="review"

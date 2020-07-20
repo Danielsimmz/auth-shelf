@@ -16,6 +16,9 @@ import {
 
 
 class UserPageList extends Component {
+
+  //this function dispatches an action with payload of video category
+  //that is captured by sagas and stored in reducer.
   showCategory = () => {
     this.props.dispatch({
       type: "PUT_CATEGORY",
