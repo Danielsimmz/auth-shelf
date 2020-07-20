@@ -73,7 +73,7 @@ class InfoPage extends Component {
       <>
         <div className="container justify-content-center">
           <div className="row justify-content-around user">
-            <h2>Administrator:{this.props.user.username}</h2>
+            <h2 className="header">Administrator:{this.props.user.username}</h2>
             <form className="text-center" onSubmit={() => this.submit()}>
               <h2>Post new Video</h2>
               <FormControl>
@@ -118,7 +118,7 @@ class InfoPage extends Component {
               </FormControl>
             </form>
             <br />
-            <h2>Videos</h2>
+            <h2 className="header">Videos</h2>
             <ul className="display">
               {this.props.videos.map((item) => {
                 return <InfoPageItem key={item.id} item={item} />;

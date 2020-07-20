@@ -53,7 +53,7 @@ class Understanding extends Component {
   render() {
     return (
       <div>
-        <header className="App-header user">
+        <header className="App-header user header">
           <h1 className="App-title">Feedback!</h1>
           <h4>
             <i>Your feedback is valued!</i>

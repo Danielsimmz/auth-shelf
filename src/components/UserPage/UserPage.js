@@ -37,10 +37,10 @@ class UserPage extends Component {
   render() {
     return (
       <>
-        <h1 className="userPage" id="welcome">
+        <h1 className="userPage header" id="welcome">
           Welcome, {this.props.user.username}!
         </h1>
-        <h2 className="userPage">Categories</h2>
+        <h2 className="userPage header">Categories</h2>
         <div className="container justify-content-center ">
           <div className="row justify-content-around">
             <br />
